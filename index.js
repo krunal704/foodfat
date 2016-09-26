@@ -16,6 +16,7 @@ app.use(logger('dev'));
 
 
 //routes
+app.use("/admin/rest",require('./routes/restaurant'))
 app.use("/admin/login",require('./routes/user'))
 
 app.use(express.static(__dirname+'/assets'));
