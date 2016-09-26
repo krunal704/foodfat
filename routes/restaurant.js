@@ -8,7 +8,7 @@ var router = express.Router();
 var restaurant = require('../models/restaurant')
 router.get('/',function(req,res){
 	var restaurant_inf = new restaurant({
-		"rest_name" : "Ponchies",
+		"rest_name" : "TCR",
 		"rest_address" : "Infocity,Gandhinagar",
 		"rest_loc" : [
 		-73.856077,

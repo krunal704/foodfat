@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 //connecting to database
 
-mongoose.connect("mongodb://localhost/testdb");  	//incomplete statement, add configuration here
+mongoose.connect("mongodb://localhost/FST");  	//incomplete statement, add configuration here
 
 //initialize express server
 var app = express();
