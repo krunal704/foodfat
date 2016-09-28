@@ -1,0 +1,31 @@
+<html>
+    <body>
+        <input type="text" name="fname" id="fname" />
+        <input type="button" onclick="loadDoc()" value="Search">
+
+        <div id="demo"> 
+
+        </div>
+
+
+
+        <script type="text/javascript">
+
+            function loadDoc() {
+        var fooditem = document.getElementById("fname").value;  
+        console.log("food item: "+fooditem);     
+        var urltonutritionx = "https://api.nutritionix.com/v1_1/search/"+fooditem+"?appId=7ab267ec&appKey=eb4ef3f6f990261bf762e091001c145b";        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", urltonutritionx, true);
+        xhttp.send();
+        }
+
+        </script>
+
+    </body>
+</html>
