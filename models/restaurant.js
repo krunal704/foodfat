@@ -16,9 +16,9 @@ var restaurantSchema = new mongoose.Schema({
 	"food_id": Number,
 	"food_price":Number
 	},
-	"zipcode":Number,
-	"country_id":Number,
-	"rating":Number,
+	"zipcode":String,
+	"country_id":String,
+	"rating":String,
 	"rest_food_type":String
 
 })
