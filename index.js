@@ -11,7 +11,7 @@ mongoose.connect("mongodb://localhost/FST");  	//incomplete statement, add confi
 //initialize express server
 var app = express();
 app.use(bodyparser.urlencoded({extended:true}));
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 app.use(logger('dev'));
 
 
@@ -21,7 +21,7 @@ app.use("/admin/login",require('./routes/user'))
 
 app.use("/admin/test",require('./routes/testAPI'))
 
-
+app.use("/admin/rest",require('./routes/testing'))
 
 app.use(express.static(__dirname+'/assets'));
 
