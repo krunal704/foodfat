@@ -29,8 +29,8 @@ router.post('/add',function(req,res){
 		"rest_time" : req.body.time,
 		"rest_city" : req.body.city,
 		"rest_menu" : {
-		"food_id" : "1",
-		"food_price" : "3000"
+		"food_id" : 1,
+		"food_price" : 3000
 		},
 		"zipcode" : req.body.zipcode,
 		"country_id" : req.body.country_id,
@@ -38,6 +38,7 @@ router.post('/add',function(req,res){
 		"rest_food_type" : req.body.food_type
 	})
 	restaurant_inf.save(function(err,result){
+		console.log("Came to sace");
 		if(!err){
 			console.log("added");
 			}

@@ -1,43 +1,74 @@
 var express = require('express');
 var router = express.Router();
+var foodinfo = require('../models/foodinfo');
+
+router.post('/add',function(req,res){
+
+    console.log("reached to add functionality!!");
+    console.log("l;amsc;lasc: "+req.body.fname);
 
 
-router.get('/',function(req,res){
+   var foodInfo = new foodinfo({
 
-    var foodInfo = new foodInfo({
-
-        "food_name":"String",
-        "no_of_serving":Number,
-        "serving_size":Number,
-        "carbs":Number,
-        "fat":Number,
-        "protein":Number,
-        "calories":Number,
-        "cholestrol":Number,
-        "sodium":Number,
-        "vitamin":Number,
-        "calcium":Number,
-        "iron":Number,
-        "is_favourite":Boolean,
-        "is_active":Boolean,
+        "food_name":req.body.fname,
+        "no_of_serving":req.body.noofserving,
+        "serving_size":req.body.servingsize,
+        "carbs":req.body.Carbs,
+        "fat":req.body.fat,
+        "protein":req.body.protein,
+        "calories":req.body.calories,
+        "cholestrol":req.body.cholestrol,
+        "sodium":req.body.sodium,
+        "vitamin":req.body.vitamins,
+        "calcium":req.body.calcium,
+        "iron":req.body.iron,
+        "is_favourite":req.body.favourite,
+        "is_active":req.body.active,
         "ingredient":{
-            "ing1": Number,
-            "ing2":Number
+            "ing1": 2,
+            "ing2":5
         }
-        
 
     })
 
-    foodInfo.save(function(error,result){
-
-        if(!error)
-        {
-            console.log("Added a new food item!!");
-        }
-        else{
-            console.log("Error"+error);
-        }
+    foodInfo.save(function(err,result){
+        console.log("Came to sace");
+        if(!err){
+            console.log("added");
+            }
+            else{
+                console.log(err);
+            }
     })
+});
 
+
+router.post('/update',function(req,res){
+
+console.log("The request  in update tagid: "+req.body.fname);
+
+foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.body.fname }, function(err, foodinfo) {
+  if (err) throw err;
+
+  res.send(foodinfo);  
+  console.log(foodinfo);
+});
+
+
+console.log("The requested value has been updated!!");
+});
+
+
+router.get('/delete/:foodID',function(req,res){
+console.log("Deleted record successfully"+req.params.foodID);
+
+
+  foodinfo.findByIdAndRemove(req.params.foodID,function(err){
+      if(err) throw err;
+      else
+      console.log("Deleted record successfully");
+  });  
 
 });
+
+module.exports = router;
