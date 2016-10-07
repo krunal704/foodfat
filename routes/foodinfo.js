@@ -4,6 +4,7 @@ var foodinfo = require('../models/foodinfo');
 
 router.post('/add',function(req,res){
 
+<<<<<<< HEAD
     console.log("reached to add functionality!!");
     console.log("l;amsc;lasc: "+req.body.fname);
 
@@ -29,6 +30,23 @@ router.post('/add',function(req,res){
             "ing2":5
         }
 
+=======
+router.get('/',function(req,res){
+
+    var foodInfo = new foodInfo({
+          "item_name": "Malai Kofta",
+          "nf_calories": 131,
+          "nf_calories_from_fat": 52,
+          "nf_total_fat": 5,
+          "nf_total_carbohydrate": 15,
+          "nf_dietary_fiber": 1,
+          "nf_protein": 5,
+          "nf_vitamin_a_dv": 0,
+          "nf_vitamin_c_dv": 10,
+          "nf_calcium_dv": 40,
+          "nf_iron_dv": 6,
+          "nf_serving_weight_grams": 100
+>>>>>>> 2cc5746587bc1af60305884098df13c91ea416e2
     })
 
     foodInfo.save(function(err,result){
@@ -71,4 +89,8 @@ console.log("Deleted record successfully"+req.params.foodID);
 
 });
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+});
+>>>>>>> 2cc5746587bc1af60305884098df13c91ea416e2

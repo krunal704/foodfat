@@ -23,8 +23,13 @@ app.use("/admin/food",require('./routes/foodinfo'))
 
 app.use("/admin/rest",require('./routes/testing'))
 
+app.use("/admin/feedback",require('./routes/feedback'))
+
+
 app.use(express.static(__dirname+'/assets'));
 
 //start server
-app.listen(1234);
-console.log("server is running on port 1234");
+var port = process.env.PORT || 8080;
+app.listen(port, function() {
+    console.log('Our app is running on http://localhost:' + port);
+});
