@@ -2,39 +2,11 @@ var express = require('express');
 var router = express.Router();
 var foodinfo = require('../models/foodinfo');
 
-router.post('/add',function(req,res){
 
-<<<<<<< HEAD
-    console.log("reached to add functionality!!");
-    console.log("l;amsc;lasc: "+req.body.fname);
-
-
-   var foodInfo = new foodinfo({
-
-        "food_name":req.body.fname,
-        "no_of_serving":req.body.noofserving,
-        "serving_size":req.body.servingsize,
-        "carbs":req.body.Carbs,
-        "fat":req.body.fat,
-        "protein":req.body.protein,
-        "calories":req.body.calories,
-        "cholestrol":req.body.cholestrol,
-        "sodium":req.body.sodium,
-        "vitamin":req.body.vitamins,
-        "calcium":req.body.calcium,
-        "iron":req.body.iron,
-        "is_favourite":req.body.favourite,
-        "is_active":req.body.active,
-        "ingredient":{
-            "ing1": 2,
-            "ing2":5
-        }
-
-=======
 router.get('/',function(req,res){
 
-    var foodInfo = new foodInfo({
-          "item_name": "Malai Kofta",
+    var foodInfo = new foodinfo({
+          "item_name": "Malai Kofta11",
           "nf_calories": 131,
           "nf_calories_from_fat": 52,
           "nf_total_fat": 5,
@@ -46,8 +18,7 @@ router.get('/',function(req,res){
           "nf_calcium_dv": 40,
           "nf_iron_dv": 6,
           "nf_serving_weight_grams": 100
->>>>>>> 2cc5746587bc1af60305884098df13c91ea416e2
-    })
+    });
 
     foodInfo.save(function(err,result){
         console.log("Came to sace");
@@ -57,7 +28,7 @@ router.get('/',function(req,res){
             else{
                 console.log(err);
             }
-    })
+    });
 });
 
 
@@ -68,7 +39,7 @@ console.log("The request  in update tagid: "+req.body.fname);
 foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.body.fname }, function(err, foodinfo) {
   if (err) throw err;
 
-  res.send(foodinfo);  
+  res.send(foodinfo);
   console.log(foodinfo);
 });
 
@@ -85,12 +56,8 @@ console.log("Deleted record successfully"+req.params.foodID);
       if(err) throw err;
       else
       console.log("Deleted record successfully");
-  });  
+  });
 
 });
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-});
->>>>>>> 2cc5746587bc1af60305884098df13c91ea416e2
