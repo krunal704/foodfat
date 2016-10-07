@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "start": "node index.js"
+
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "morgan": "^1.7.0",
     "node-rest-client": "^2.0.1",
     "nodemon": "^1.10.2"
+  },
+  "engines": {
+    "node": "4.5.0"
   }
 }
