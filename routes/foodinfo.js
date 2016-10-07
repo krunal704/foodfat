@@ -5,27 +5,18 @@ var router = express.Router();
 router.get('/',function(req,res){
 
     var foodInfo = new foodInfo({
-
-        "food_name":"String",
-        "no_of_serving":Number,
-        "serving_size":Number,
-        "carbs":Number,
-        "fat":Number,
-        "protein":Number,
-        "calories":Number,
-        "cholestrol":Number,
-        "sodium":Number,
-        "vitamin":Number,
-        "calcium":Number,
-        "iron":Number,
-        "is_favourite":Boolean,
-        "is_active":Boolean,
-        "ingredient":{
-            "ing1": Number,
-            "ing2":Number
-        }
-        
-
+          "item_name": "Malai Kofta",
+          "nf_calories": 131,
+          "nf_calories_from_fat": 52,
+          "nf_total_fat": 5,
+          "nf_total_carbohydrate": 15,
+          "nf_dietary_fiber": 1,
+          "nf_protein": 5,
+          "nf_vitamin_a_dv": 0,
+          "nf_vitamin_c_dv": 10,
+          "nf_calcium_dv": 40,
+          "nf_iron_dv": 6,
+          "nf_serving_weight_grams": 100
     })
 
     foodInfo.save(function(error,result){
