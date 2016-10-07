@@ -13,7 +13,8 @@ var foodSchema = new mongoose.Schema({
 	"nf_vitamin_c_dv": Number,
 	"nf_calcium_dv": Number,
 	"nf_iron_dv": Number,
-	"nf_serving_weight_grams": Number
+	"nf_serving_weight_grams": Number,
+	"nutritional_density" : Number
 
 
 });

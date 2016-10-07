@@ -3,23 +3,40 @@ var router = express.Router();
 var foodinfo = require('../models/foodinfo');
 
 
-router.get('/',function(req,res){
+router.post('/add',function(req,res){
+
+
+        //Logic to calculate the nutritional density of food item.
+
+  var protein_dv = parseInt(req.body.protein) / 50;
+  var df_dv = parseInt(req.body.fiber) / 25;
+  var nutdensity = (protein_dv+df_dv+parseInt(req.body.vita)+parseInt(req.body.vitc)+parseInt(req.body.calcium)+parseInt(req.body.iron))/6;
+  var cal_precent = parseInt(req.body.calorie)/ 2000;
+  var final_nv = nutdensity/ cal_precent;
+
+  console.log("Nut density"+ final_nv);
+
+  console.log("pro density"+ protein_dv+"df_dv "+df_dv+"\ncal percent:"+cal_precent);
 
     var foodInfo = new foodinfo({
-          "item_name": "Malai Kofta11",
-          "nf_calories": 131,
-          "nf_calories_from_fat": 52,
-          "nf_total_fat": 5,
-          "nf_total_carbohydrate": 15,
-          "nf_dietary_fiber": 1,
-          "nf_protein": 5,
-          "nf_vitamin_a_dv": 0,
-          "nf_vitamin_c_dv": 10,
-          "nf_calcium_dv": 40,
-          "nf_iron_dv": 6,
-          "nf_serving_weight_grams": 100
+//Fetching the food items and saving it into the database
+      "item_name": req.body.fname,
+      "nf_calories": req.body.calorie,
+      "nf_calories_from_fat": req.body.calfat,
+      "nf_total_fat": req.body.fat,
+      "nf_total_carbohydrate": req.body.Carbs,
+      "nf_dietary_fiber": req.body.fiber,
+      "nf_protein": req.body.protein,
+      "nf_vitamin_a_dv": req.body.vita,
+      "nf_vitamin_c_dv": req.body.vitc,
+      "nf_calcium_dv": req.body.calcium,
+      "nf_iron_dv": req.body.iron,
+      "nf_serving_weight_grams": req.body.serving,
+      "nutritional_density" : final_nv
+
     });
 
+//Saving the item into the mongo db database
     foodInfo.save(function(err,result){
         console.log("Came to sace");
         if(!err){
@@ -32,6 +49,8 @@ router.get('/',function(req,res){
 });
 
 
+
+//route for updating the food information
 router.post('/update',function(req,res){
 
 console.log("The request  in update tagid: "+req.body.fname);
@@ -48,6 +67,8 @@ console.log("The requested value has been updated!!");
 });
 
 
+
+//route to delete the food information
 router.get('/delete/:foodID',function(req,res){
 console.log("Deleted record successfully"+req.params.foodID);
 
