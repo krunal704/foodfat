@@ -19,7 +19,7 @@ app.use(logger('dev'));
 app.use("/admin/rest",require('./routes/restaurant'))
 app.use("/admin/login",require('./routes/user'))
 app.use("/admin/food",require('./routes/foodinfo'))
-//app.use("/admin/test",require('./routes/testAPI'))
+app.use("/admin/test",require('./routes/testAPI'))
 
 app.use("/admin/rest",require('./routes/testing'))
 

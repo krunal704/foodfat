@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+      <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+	<title>Food Items</title>
+
+
+	<!-- Java Script files-->
+	<script type="text/javascript" src="../material/material.min.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
+	<script type="text/javascript" src="../js/controllers/food_controller.js" ></script>
+
+	<!-- CSS and material Icons Files
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css"> -->
+</head>
+<body>
+<div class="food-container" ng-app="food" ng-controller="food_controller">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
+	<thead>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Name
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			No Of Serving
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Serving Size
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Fat
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Calories
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Update	
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Delete
+		</th>
+		
+	</thead>
+	<tbody>
+		<tr ng-repeat="food in foods">
+		
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.name}}
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
+				{{food.no_serving}}
+			</td>
+			
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.serving_size}}
+			</td>
+
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.fat}}
+			</td>
+
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.calories}}
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" >
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					ng-click="confirmDelete(feedback.FirstName)">
+            <i class="material-icons">edit</i>
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" >
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					ng-click="confirmfoodDelete(food.name)">
+            <i class="material-icons">delete</i>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<style type="text/css">
+	.food-container{
+
+	margin: auto;
+	width: 50%;
+}
+</style>
+
+</body>
+</html>

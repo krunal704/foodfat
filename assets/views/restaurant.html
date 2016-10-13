@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+  <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+      <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+	<title>Restaurant</title>
+
+
+	<!-- Java Script files-->
+	<script type="text/javascript" src="../material/material.min.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
+	<script type="text/javascript" src="../js/controllers/restaurant_controller.js" ></script>
+
+	<!-- CSS and material Icons Files
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css"> -->
+</head>
+<body>
+<div class="resuarant-container" ng-app="restaurant" ng-controller="restaurant_controller">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
+	<thead>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Name
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Address
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			City
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Update
+		</th>
+		<th class="mdl-data-table__cell--non-numeric" >
+			Delete
+		</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="rest in restaurants">
+		
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{rest.name}}
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
+				{{rest.address}}
+			</td>
+			
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{rest.city}}
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" >
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					ng-click="confirmDelete(feedback.FirstName)">
+            <i class="material-icons">edit</i>
+			</td>
+			<td class="mdl-data-table__cell--non-numeric" >
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					ng-click="confirmRestDelete(rest.name)">
+            <i class="material-icons">delete</i>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<style type="text/css">
+	.resuarant-container{
+
+	margin: auto;
+	width: 50%;
+}
+</style>
+
+</body>
+</html>

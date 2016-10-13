@@ -18,7 +18,7 @@ router.get('/delete/:feedbackid', function(req,res){
 });
 
 router.get('/getfeedback', function(req,res){
-
+  
   console.log("Route to fetch all feedback..");
   feedback.find({},function(err,result){
   				res.json(result);
