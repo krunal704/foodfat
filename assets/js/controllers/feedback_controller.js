@@ -2,7 +2,7 @@ angular.module("feedback", [])
 	.controller("feedback_controller", function ($scope, $http) {
 
 		var feedbacks;
-		$http.get('admin/feedback/data').then(function (res) {
+			$http.get('admin/feedback/getfeedback').then(function (res) {
 			console.log(res);
 			$scope.feedbacks = res.data;
 		});

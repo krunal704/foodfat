@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var foodinfo = require('../models/foodinfo');
 
+router.get('/', function (req, res) {
+    res.sendFile('food.html', { root: path.join(__dirname, '../assets/views') });
+});
 
 router.post('/add',function(req,res){
 
