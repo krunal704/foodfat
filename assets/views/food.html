@@ -15,26 +15,26 @@
 	<title>Food Items</title>
 
 
-	<!-- Java Script files-->
-	<script type="text/javascript" src="../material/material.min.js" ></script>
+	<!-- Java Script files
+	<script type="text/javascript" src="../material/material.min.js" ></script>-->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 	<script type="text/javascript" src="../js/controllers/food_controller.js" ></script>
 
-	<!-- CSS and material Icons Files
+	<!-- CSS and material Icons Files-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css"> -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css">
 </head>
 <body>
+
 <div class="food-container" ng-app="food" ng-controller="food_controller">
+	<h3>Food Information</h3>
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
 	<thead>
 		<th class="mdl-data-table__cell--non-numeric" >
 			Name
 		</th>
-		<th class="mdl-data-table__cell--non-numeric" >
-			No Of Serving
-		</th>
+	
 		<th class="mdl-data-table__cell--non-numeric" >
 			Serving Size
 		</th>
@@ -45,53 +45,61 @@
 			Calories
 		</th>
 		<th class="mdl-data-table__cell--non-numeric" >
-			Update	
+			Update
 		</th>
 		<th class="mdl-data-table__cell--non-numeric" >
 			Delete
 		</th>
-		
+
 	</thead>
 	<tbody>
 		<tr ng-repeat="food in foods">
+
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.item_name}}
+			</td>
 		
+
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.name}}
-			</td>
-			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
-				{{food.no_serving}}
-			</td>
-			
-			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.serving_size}}
+				{{food.nf_serving_weight_grams}} g
 			</td>
 
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.fat}}
+				{{food.nf_total_fat}}
 			</td>
 
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.calories}}
+				{{food.nf_calories}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
-					ng-click="confirmDelete(feedback.FirstName)">
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
+					ng-click="updateFood(food._id, food.item_name)">
             <i class="material-icons">edit</i>
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
-					ng-click="confirmfoodDelete(food.name)">
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
+					ng-click="confirmFoodDelete(food._id, food.item_name)">
             <i class="material-icons">delete</i>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+ <a href="../views/manage_food.html" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <i class="material-icons">add</i>
+</button></a>
 </div>
 <style type="text/css">
 	.food-container{
 
 	margin: auto;
 	width: 50%;
+}
+.add-button{
+	position: fixed;
+	right: 5%;
+	bottom: 5%;
+	display: block;
 }
 </style>
 

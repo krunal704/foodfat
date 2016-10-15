@@ -1,12 +1,15 @@
 //Dependancies
 var express = require('express');
 var router = express.Router();
-
+var path = require('path');
 //models
 //router
 
 var restaurant = require('../models/restaurant');
 
+router.get('/', function (req, res) {
+	res.sendFile('restaurant.html',{root:path.join(__dirname,'../assets/views')});
+});
 
 router.post('/add',function(req,res){
 
@@ -57,7 +60,7 @@ restaurant.findOneAndUpdate({ _id: '57eecefc257a430951f6009e' }, { rest_name: re
 
   // we have the updated user returned to us
 	//console.log(restaurant);
-  res.send(restaurant);  
+  res.send(restaurant);
   console.log(restaurant);
 });
 
@@ -74,7 +77,7 @@ console.log("Deleted record successfully"+req.params.restID);
       if(err) throw err;
       else
       console.log("Deleted record successfully");
-  });  
+  });
 
 });
 
