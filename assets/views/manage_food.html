@@ -10,7 +10,7 @@
         src="http://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
-        <script type="text/javascript" src="../../node_modules/jquery-validation/dist/jquery.validate.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
   <link rel="stylesheet" href="css/mngfood.css">
 <title>
 Manage Food
@@ -20,37 +20,73 @@ Manage Food
 
 <div class="formContainter" style="margin:auto; width:80%;" >
   
-		<form method="post" action="" class="form" id="foodform" >
+		<form method="POST" action="http://localhost:8080/admin/food/add" class="form" id="foodform" >
           <div class="mdl-layout" ><h2> Add Food</h2> </div>
 			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-    			 <input class="mdl-textfield__input" type="text"  name="foodname" >
-   				 <label class="mdl-textfield__label" for="foodname">Food Name</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="number" step="0.01" name="noofserving" >
-   				 <label class="mdl-textfield__label" for="sample3">Number of Serving</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="number" step="0.01" id="servingsize" name="servingsize" >
-   				 <label class="mdl-textfield__label" for="sample3">Serving Size</label>
+    			 <input class="mdl-textfield__input" type="text"  name="fname" >
+   				 <label class="mdl-textfield__label" for="fname">Food Name</label>
    				</div>
 
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input"  id="calories" name="calories">
+           <label class="mdl-textfield__label" for="sample3">Calories</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="calfat" name="calfat">
+           <label class="mdl-textfield__label" for="sample3">Calories from Fat</label>
+          </div>
+   			 
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="fat" name="fat">
+           <label class="mdl-textfield__label" for="sample3">Fat</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="carbs" name="carbs" >
+           <label class="mdl-textfield__label" for="sample3">Carbohydrates</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="fiber" name="fiber" >
+           <label class="mdl-textfield__label" for="sample3">Fiber</label>
+          </div>
+          
    			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="number"  step="0.01" id="carbs" name="Carbs" >
-   				 <label class="mdl-textfield__label" for="sample3">Carbohydrates</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="text" step="0.01" id="fat" name="fat">
-   				 <label class="mdl-textfield__label" for="sample3">Fat</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="text" step="0.01" id="protein" name="protein" >
+    			 <input class="mdl-textfield__input" id="protein" name="protein" >
    				 <label class="mdl-textfield__label" for="sample3">Protein</label>
    				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="text" step="0.01" id="calories" name="calories">
-   				 <label class="mdl-textfield__label" for="sample3">Calories</label>
-   				</div>
+   			 
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="vitamin_a" name="vitamin_a">
+           <label class="mdl-textfield__label" for="sample3">Vitamin A</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="vitamin_c" name="vitamin_c">
+           <label class="mdl-textfield__label" for="sample3">Vitamin C</label>
+          </div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="calcium" name="calcium" >
+           <label class="mdl-textfield__label" for="sample3">Calcium</label>
+          </div>
+          
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="iron" name="iron" >
+           <label class="mdl-textfield__label" for="sample3">Iron</label>
+          </div>
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input"  id="serving" name="serving" >
+           <label class="mdl-textfield__label" for="sample3">Serving Size(g)</label>
+          </div>
+
+       <!--   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+           <input class="mdl-textfield__input" id="nutri_dens" name="nutri_dens" >
+           <label class="mdl-textfield__label" for="sample3">Nutrition Density</label>
+          </div>
+          
    			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     			 <input class="mdl-textfield__input" type="text" step="0.01" id="cholestrol" name="cholestrol">
    				 <label class="mdl-textfield__label" for="sample3">Cholestrol</label>
@@ -59,18 +95,8 @@ Manage Food
     			 <input class="mdl-textfield__input" type="text" step="0.01" id="sodium" name="sodium" >
    				 <label class="mdl-textfield__label" for="sample3">Sodium</label>
    				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="text" step="0.01" id="vitamins" name="vitamins">
-   				 <label class="mdl-textfield__label" for="sample3">Vitamins</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="number" step="0.01" id="name" name="calcium" >
-   				 <label class="mdl-textfield__label" for="sample3">Calcium</label>
-   				</div>
-   			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    			 <input class="mdl-textfield__input" type="number" step="0.01" id="iron" name="iron" >
-   				 <label class="mdl-textfield__label" for="sample3">Iron</label>
-   				</div>
+   			  
+   			  
           <div>
 			<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="fav">
 			  <input type="checkbox" id="fav" name="favourite" class="mdl-checkbox__input" >
@@ -98,17 +124,20 @@ Manage Food
            <input class="mdl-textfield__input" type="text" name="ingred3">
            <label class="mdl-textfield__label" for="sample3">Ingredient 3</label>
           </div>
-          
+          -->
+          <div class="">
+             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+             Submit  <i class="material-icons right">send</i>
+            </button>
           </div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Submit
-</button>
-   					</form>
+   	</form>
 
-  </div>
+   
+</div>
+
  <script type="text/javascript">
 
- var ingred = [];
+ /*var ingred = [];
  var i = 0;
  function addIngredient() {
    
@@ -116,24 +145,69 @@ Manage Food
 for (var i = ingred.length - 1; i >= 0; i--) {
       console.log(ingred[i]+" ");
     }
-
+*/
    $().ready(function () {
       $("#foodform").validate({
           rules: {
-            foodname:{
+            fname:{
               required:true,
               minlength:2
             },
-            servingsize:"required",
-            noofserving:"required"
-
+            calories:{
+              required:true,
+              number:true
+            },
+            calfat:{
+              required:true,
+              number:true
+            },
+            fat:{
+              required:true,
+              number:true
+            },
+            carbs:{
+              required:true,
+              number:true
+            },
+            fiber:{
+              required:true,
+              number:true
+            },
+            protein:{
+              required:true,
+              number:true
+            },
+            vitamin_a:{
+              required:true,
+              number:true
+            },
+            vitamin_c:{
+              required:true,
+              number:true
+            },
+            calcium:{
+              required:true,
+              number:true
+            },
+            iron:{
+              required:true,
+              number:true
+            },
+          /*  nutri_dens:{
+              required:true,
+              number:true
+            },
+            */serving:{
+              required:true,
+              number:true
+            }
           },
           messages: {
-            foodname:{
+            fname:{
                 required:"Please enter Food name",
                 minlength:"Food name should more than two latters"
             },
-            servingsize:"Please enter servingsize"
+            serving:"Please enter serving"
           }
       });
    });

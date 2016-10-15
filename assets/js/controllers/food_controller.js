@@ -1,26 +1,40 @@
 angular.module("food", [])
-	.controller("food_controller", function ($scope) {
-		var foods;
+	.controller("food_controller", function ($scope, $http) {
+		var foods={};
 
 		//ajax request to append data form route admin/food/data
-		$http.get('admin/food/data').then(function (res) {
+		$http.get('../admin/food/getfood').then(function (res) {
 			$scope.foods = res.data;
 		})
 
-		$scope.foods = foods;
+		
 
 
 		//confirm delete function for deleteing food item
-		$scope.confirmFoodDelete = function(strin){
-			var C = confirm(strin+" do you want to delete?");
+		function confirmFoodDelete(id, name){
+			var C = confirm(name+" do you want to delete?");
 			if(C){
-				console.log("deleted succefully");
+				$http.get('../admin/food/delete/'+id).then(function (res) {
+					console.log(name +" is "+res.data);	
+					$http.get('../admin/food/getfood').then(function (res) {
+						$scope.foods = res.data;
+					})
+					
+				});
 			}
 			else{
 				console.log("deleting Canceled");
 			}
+
 				C = null;
 		}
+
+		function addform(){
+			$http.get('../admin/food/add');
+		}
+		$scope.addform = addform;
+		$scope.foods = foods;
+		$scope.confirmFoodDelete = confirmFoodDelete;
 		
 });
 	

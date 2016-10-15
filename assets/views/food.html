@@ -15,8 +15,8 @@
 	<title>Food Items</title>
 
 
-	<!-- Java Script files-->
-	<script type="text/javascript" src="../material/material.min.js" ></script>
+	<!-- Java Script files
+	<script type="text/javascript" src="../material/material.min.js" ></script>-->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
 	<script type="text/javascript" src="../js/controllers/food_controller.js" ></script>
 
@@ -34,9 +34,7 @@
 		<th class="mdl-data-table__cell--non-numeric" >
 			Name
 		</th>
-		<th class="mdl-data-table__cell--non-numeric" >
-			No Of Serving
-		</th>
+	
 		<th class="mdl-data-table__cell--non-numeric" >
 			Serving Size
 		</th>
@@ -58,42 +56,50 @@
 		<tr ng-repeat="food in foods">
 
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.name}}
+				{{food.item_name}}
 			</td>
-			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
-				{{food.no_serving}}
+		
+
+			<td class="mdl-data-table__cell--non-numeric" >
+				{{food.nf_serving_weight_grams}} g
 			</td>
 
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.serving_size}}
+				{{food.nf_total_fat}}
 			</td>
 
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.fat}}
-			</td>
-
-			<td class="mdl-data-table__cell--non-numeric" >
-				{{food.calories}}
+				{{food.nf_calories}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
-					ng-click="confirmDelete(feedback.FirstName)">
+					ng-click="updateFood(food._id)">
             <i class="material-icons">edit</i>
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
-					ng-click="confirmfoodDelete(food.name)">
+					ng-click="confirmFoodDelete(food._id, food.item_name)">
             <i class="material-icons">delete</i>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+ <a href="../views/manage_food.html" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <i class="material-icons">add</i>
+</button></a>
 </div>
 <style type="text/css">
 	.food-container{
 
 	margin: auto;
 	width: 50%;
+}
+.add-button{
+	position: fixed;
+	right: 5%;
+	bottom: 5%;
+	display: block;
 }
 </style>
 
