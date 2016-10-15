@@ -16,6 +16,7 @@ app.use(logger('dev'));
 
 
 //routes
+app.use("/admin/user",require('./routes/user'))
 app.use("/admin/rest",require('./routes/restaurant'))
 app.use("/admin/login",require('./routes/user'))
 app.use("/admin/food",require('./routes/foodinfo'))
@@ -24,6 +25,8 @@ app.use("/admin/test",require('./routes/testAPI'))
 app.use("/admin/rest",require('./routes/testing'))
 
 app.use("/admin/feedback",require('./routes/feedback'))
+
+app.use("/appuser/login",require('./routes/user'))
 
 
 app.use(express.static(__dirname+'/assets'));

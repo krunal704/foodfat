@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 //schema
 var userSchema = new mongoose.Schema({
-	"FirstName":String,
-	"LastName":String,
+	"firstName":String,
+	"userName":String,
 	"password":String,
 	"gender":String,
 	"email":String,
@@ -13,8 +13,7 @@ var userSchema = new mongoose.Schema({
 	"profilepic":String,
 	"zipcode":Number,
 	"country":String,
-	"lastlogin":{ type: Date, default: Date.now },
-	"calorieintake":Number,
+  	"calorieintake":Number,
 	"weightlost":Number,
 	"isallergic":Boolean,
 	//"allergy":[],
