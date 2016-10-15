@@ -62,7 +62,7 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
         console.log("Came to sace");
         if(!err){
             console.log("added");
-            res.write("food added successfully");
+            //res.write("food added successfully");
           res.send("The requested food has beed successfully added.");
 
 
