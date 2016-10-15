@@ -50,17 +50,36 @@ router.post('/add',function(req,res){
 
     });
 
-//Saving the item into the mongo db database
+//Saving the item into the mongo db database if same item doesnot exist
+
+foodinfo.findOne({"item_name":req.body.fname},function(err,result){
+  if(result)
+  {
+    res.send("A food of such name already exists.");
+  }
+  else {
     foodInfo.save(function(err,result){
         console.log("Came to sace");
         if(!err){
+<<<<<<< HEAD
             console.log("added");
             res.write("food added successfully");
+=======
+          res.send("The requested food has beed successfully added.");
+
+>>>>>>> 9256789389ab1d9a154988fba4067dd6f09a46d6
             }
             else{
-                console.log(err);
+                res.send(err);
             }
     });
+  }
+
+});
+
+
+
+
 });
 
 
