@@ -6,45 +6,117 @@ var router = express.Router();
 var user = require('../models/user')
 //router
 
-router.post('/',function(req,res){
-	var fn = req.body.fname;
-	var ln = req.body.lname;
-	console.log(fn+" "+ln);
+router.post('/add',function(req,res){
+
+	console.log("reached to add functionality!!");
+	console.log("l;amsc;lasc: "+req.body.fname);
+
+
+	var user_info = new user({
+			"firstName":req.body.fname,
+			"userName":req.body.uname,
+			"password":req.body.pass,
+			"gender":req.body.gender,
+			"email":req.body.email,
+			"dob":req.body.dob,
+			"height":req.body.height,
+			"weight":req.body.weight,
+			"profilepic":req.body.pic,
+			"zipcode":req.body.code,
+			"country":req.body.country,
+			"calorieintake":req.body.cal,
+			"weightlost":req.body.loss,
+			"isallergic":req.body.isalg,
+			"dailystepgoal":req.body.goalstep
+	})
+	user_info.save(function(err,result){
+		console.log("Came to sace");
+		if(!err){
+			console.log("added");
+			}
+			else{
+				console.log(err);
+			}
+	})
 });
 
-//router.get('/',function(req,res){
-	// var newUser = new user({
-	// 	"FirstName":"Jeet",
-	// 	"LastName":"Virani",
-	// 	"password":"Akshar",
-	//     "gender":"male",
-	// 	"email":"viranijitu19@gmail.com",
-	// 	"dob":19/08/1994,
-	// 	"height":167,
-	// 	"weight":70,
-	// 	"profilepic":"null",
-	// 	"zipcode":395006,
-	// 	"country":"India",
-	// 	"lastlogin":new Date,
-	// 	"calorieintake":1200,
-	// 	"weightlost":10,
-	// 	"isallergic":"yes",
-	/*	"allergy":[{
-			"chocoallergy":true,
-			"allergy2":true,
-			"diabetic":false
-		}],*/
-	// 	"dailystepgoal":2500
-	// })
-	// newUser.save(function(err,result){
-	// 	if(!err){
-	// 		console.log("added");
-	// 		user.find({"LastName":"Virani","password":"Akshar"},function(err,result){
-	// 			res.json(result);
-	// 		})
-	// 	}
-	// })
-//})
 
+
+
+
+router.post('/update',function(req,res){
+
+console.log("The request  in update tagid: "+req.body.fname+" "+req.body.email);
+
+user.findOneAndUpdate({ _id: '57eecefc257a430951f6009e' }, { firstName: req.body.name,email : req.body.email }, function(err, restaurant) {
+  if (err) throw err;
+
+  res.send(user);  
+  console.log(user);
+});
+
+
+console.log("The requested value has been updated!!");
+});
+
+
+
+//validate uname and password for admin panel at a login time
+router.post('/validate',function(req,res){
+console.log("The request  in validate tagid: "+req.body.fname+" "+req.body.pass);
+user.find({ 'userName': req.body.fname,'email':req.body.pass }, function(err, user) {
+
+        if (err) {
+
+            console.log('Signup error');
+        }
+        if (user.length!=0) {
+          if(user[0].userName){
+            	console.log('Username already exists, username: ' + req.body.fname);                         
+             }
+        else
+        {
+        	console.log('invalid id and passs');
+        }
+    })
+ });
+
+
+// validte app user email
+router.post('/appvalidate',function(req,res){
+console.log("The request  in  tagid: "+req.body.email);
+user.find({ 'email':req.body.email }, function(err, user) {
+
+        if (err) {
+
+            console.log('Signup error');
+        }
+        if (user.length!=0) {
+          if(user[0].email){
+            	console.log('Email already exists, EMAIL: [return 000000]' + req.body.email);   
+            	response.send(0);                      
+             }
+        else
+        {
+        	console.log('invalid email');
+        	response.send(0);
+        }
+    })
+ });
+
+
+
+
+router.get('/delete/:restID',function(req,res){
+console.log("Deleted record successfully"+req.params.restID);
+
+
+  user.findByIdAndRemove(req.params.restID,function(err){
+      if(err) throw err;
+      else
+      console.log("Deleted record successfully");
+  });  
+
+});
 
 module.exports = router;
