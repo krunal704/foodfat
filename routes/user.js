@@ -78,32 +78,34 @@ user.find({ 'userName': req.body.fname,'email':req.body.pass }, function(err, us
         {
         	console.log('invalid id and passs');
         }
-    })
+    }
  });
+});
 
 
 // validte app user email
 router.post('/appvalidate',function(req,res){
 console.log("The request  in  tagid: "+req.body.email);
-user.find({ 'email':req.body.email }, function(err, user) {
 
-        if (err) {
+user.findOne({ "email":req.body.email }, function(err, result) {
 
-            console.log('Signup error');
+		if(err)
+		{
+			res.send(err);
+		}
+        else if(result)
+        {
+        	console.log("locha11");
+        	res.send("0");
         }
-        if (user.length!=0) {
-          if(user[0].email){
-            	console.log('Email already exists, EMAIL: [return 000000]' + req.body.email);   
-            	response.send(0);                      
-             }
         else
         {
-        	console.log('invalid email');
-        	response.send(0);
+        	console.log("locha");
+        	res.send("1");
         }
-    })
+    
  });
-
+});
 
 
 

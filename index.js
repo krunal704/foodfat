@@ -26,6 +26,8 @@ app.use("/admin/rest",require('./routes/testing'))
 
 app.use("/admin/feedback",require('./routes/feedback'))
 
+app.use("/appuser/login",require('./routes/user'))
+
 
 app.use(express.static(__dirname+'/assets'));
 
