@@ -85,7 +85,7 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
 //route for updating the food information
 router.post('/update',function(req,res){
 
-console.log("The request  in update tagid: "+req.body.fname);
+console.log("The request  in update tagid: "+req.body.fname + " "+req.body._id);
 
 foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.body.fname }, function(err, foodinfo) {
   if (err) throw err;
@@ -93,7 +93,14 @@ foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.
   res.send(foodinfo);
   console.log(foodinfo);
 });
+/*
+foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.body.item_name }, function(err, foodinfo) {
+  if (err) throw err;
 
+  res.send(foodinfo);
+  console.log(foodinfo);
+});
+*/
 
 console.log("The requested value has been updated!!");
 });

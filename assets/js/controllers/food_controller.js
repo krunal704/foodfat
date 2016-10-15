@@ -5,7 +5,17 @@ angular.module("food", [])
 		//ajax request to append data form route admin/food/data
 		$http.get('../admin/food/getfood').then(function (res) {
 			$scope.foods = res.data;
-		})
+		});
+
+
+		
+		function updateFood(id, name){
+			
+			$http.post('../admin/food/update', {fname:name, _id:id}).then(function (res) {
+				console.log(name + " is requested for update");
+			//	$scope.foods = res.data;
+			});
+		}
 
 		
 
@@ -35,6 +45,7 @@ angular.module("food", [])
 		$scope.addform = addform;
 		$scope.foods = foods;
 		$scope.confirmFoodDelete = confirmFoodDelete;
+		$scope.updateFood = updateFood;
 		
 });
 	
