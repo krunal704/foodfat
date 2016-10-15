@@ -61,13 +61,11 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
     foodInfo.save(function(err,result){
         console.log("Came to sace");
         if(!err){
-<<<<<<< HEAD
             console.log("added");
             res.write("food added successfully");
-=======
           res.send("The requested food has beed successfully added.");
 
->>>>>>> 9256789389ab1d9a154988fba4067dd6f09a46d6
+
             }
             else{
                 res.send(err);
