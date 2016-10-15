@@ -19,8 +19,8 @@
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileColor" content="#3372DF">
 
-	<script type="text/javascript" src="../material/material.min.js" ></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
 	<script type="text/javascript" src="../js/controllers/feedback_controller.js" ></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -30,7 +30,7 @@
     
 	<title class="mdl-data-table">Manage Feedback</title>
 </head>
-<body ng-app = "feedback">
+<body >
 
 <div ng-app="feedback" ng-controller="feedback_controller" class="feedbackContainer">
 
@@ -44,11 +44,14 @@
 			</th >
 
 			<th class="mdl-data-table__cell--non-numeric feedback">
-				Feedback
+				Mail ID
 			</th>
 
 			<th class="mdl-data-table__cell--non-numeric">
-				Date and Time
+				Feedback
+			</th>
+			<th class="mdl-data-table__cell--non-numeric">
+				Date
 			</th>
 			<th class="mdl-data-table__cell--non-numeric">
 				Delete
@@ -57,20 +60,23 @@
 		<tbody class="">
 			<tr ng-repeat="feedback in feedbacks">
 				<td class="mdl-data-table__cell--non-numeric">
-					{{feedback.FirstName+' '+feedback.LastName}}
+					{{feedback.user_name}}
 
+				</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					{{feedback.user_mailid}}
 				</td>
 				<td class="mdl-data-table__cell--non-numeric feedback" style="width: 400px">
 					<div style="word-wrap: break-all; display: block">
-					{{feedback.Feedback}}
+					{{feedback.feedback_content}}
 					</div>
 				</td>
 				<td class="">
-					{{feedback.DateTime}}
+					{{feedback.date}}
 				</td>
 				<td class="">
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
-					ng-click="confirmDelete(feedback.FirstName)">
+					ng-click="confirmDelete(feedback._id, feedback.user_name)">
             <i class="material-icons">delete</i>
 				</td>
 			</tr>

@@ -12,8 +12,11 @@ router.get('/delete/:feedbackid', function(req,res){
 
   feedback.findByIdAndRemove(req.params.feedbackid,function(err){
       if(err) throw err;
-      else
-      console.log("Deleted record successfully for id:"+req.params.feedbackid);
+      else{
+        console.log("Deleted record successfully for id:"+req.params.feedbackid);  
+        res.send("Deleted successfully");
+      }
+      
   });
 });
 
