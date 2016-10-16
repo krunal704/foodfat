@@ -118,7 +118,7 @@ console.log("Deleted record successfully"+req.params.foodID);
         res.send("Deleted record successfully");
         console.log("Deleted record successfully");
       }
-      
+
   });
 
 });

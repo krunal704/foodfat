@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
@@ -19,8 +19,8 @@ Manage Food
 <body>
 
 <div class="formContainter" style="margin:auto; width:80%;" >
-  
-		<form method="POST" action="http://localhost:8080/admin/food/add" class="form" id="foodform" >
+
+		<form method="POST" action="../admin/food/add" class="form" id="foodform" >
           <div class="mdl-layout" ><h2> Add Food</h2> </div>
 			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
     			 <input class="mdl-textfield__input" type="text"  name="fname" >
@@ -36,7 +36,7 @@ Manage Food
            <input class="mdl-textfield__input" id="calfat" name="calfat">
            <label class="mdl-textfield__label" for="sample3">Calories from Fat</label>
           </div>
-   			 
+
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
            <input class="mdl-textfield__input" id="fat" name="fat">
            <label class="mdl-textfield__label" for="sample3">Fat</label>
@@ -51,12 +51,12 @@ Manage Food
            <input class="mdl-textfield__input" id="fiber" name="fiber" >
            <label class="mdl-textfield__label" for="sample3">Fiber</label>
           </div>
-          
+
    			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     			 <input class="mdl-textfield__input" id="protein" name="protein" >
    				 <label class="mdl-textfield__label" for="sample3">Protein</label>
    				</div>
-   			 
+
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
            <input class="mdl-textfield__input" id="vitamin_a" name="vitamin_a">
            <label class="mdl-textfield__label" for="sample3">Vitamin A</label>
@@ -71,7 +71,7 @@ Manage Food
            <input class="mdl-textfield__input" id="calcium" name="calcium" >
            <label class="mdl-textfield__label" for="sample3">Calcium</label>
           </div>
-          
+
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
            <input class="mdl-textfield__input" id="iron" name="iron" >
            <label class="mdl-textfield__label" for="sample3">Iron</label>
@@ -86,7 +86,7 @@ Manage Food
            <input class="mdl-textfield__input" id="nutri_dens" name="nutri_dens" >
            <label class="mdl-textfield__label" for="sample3">Nutrition Density</label>
           </div>
-          
+
    			  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     			 <input class="mdl-textfield__input" type="text" step="0.01" id="cholestrol" name="cholestrol">
    				 <label class="mdl-textfield__label" for="sample3">Cholestrol</label>
@@ -95,8 +95,8 @@ Manage Food
     			 <input class="mdl-textfield__input" type="text" step="0.01" id="sodium" name="sodium" >
    				 <label class="mdl-textfield__label" for="sample3">Sodium</label>
    				</div>
-   			  
-   			  
+
+
           <div>
 			<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="fav">
 			  <input type="checkbox" id="fav" name="favourite" class="mdl-checkbox__input" >
@@ -132,7 +132,7 @@ Manage Food
           </div>
    	</form>
 
-   
+
 </div>
 
  <script type="text/javascript">
@@ -140,7 +140,7 @@ Manage Food
  /*var ingred = [];
  var i = 0;
  function addIngredient() {
-   
+
  }
 for (var i = ingred.length - 1; i >= 0; i--) {
       console.log(ingred[i]+" ");
