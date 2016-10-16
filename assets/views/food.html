@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="../css/styles.css">
-    
+
   </head>
   <body >
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -88,7 +88,7 @@
           </div>
         </header>
          <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href="/home"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+          <a class="mdl-navigation__link" href="/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
           <a class="mdl-navigation__link" href="/admin/food"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_dining</i>Manage Food</a>
           <a class="mdl-navigation__link" href="/admin/rest"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">restaurant</i>Manage Restaurant</a>
           <a class="mdl-navigation__link" href="/admin/feedback" ><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">feedback</i>Manage Feedback</a>
@@ -99,13 +99,13 @@
 
 <div class="food-container"  ng-app="food" ng-controller="food_controller">
 
- 
+
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
   <thead>
     <th class="mdl-data-table__cell--non-numeric" >
       Name
     </th>
-  
+
     <th class="mdl-data-table__cell--non-numeric" >
       Serving Size
     </th>
@@ -129,7 +129,7 @@
       <td class="mdl-data-table__cell--non-numeric" >
         {{food.item_name}}
       </td>
-    
+
 
       <td class="mdl-data-table__cell--non-numeric" >
         {{food.nf_serving_weight_grams}} g
@@ -143,9 +143,10 @@
         {{food.nf_calories}}
       </td>
       <td class="mdl-data-table__cell--non-numeric" >
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
-          ng-click="updateFood(food._id, food.item_name)">
+        <!--<a href="../views/update_food.html">--><button ng-click="updateFood(food._id, food.item_name)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
+          >
             <i class="material-icons">edit</i>
+
       </td>
       <td class="mdl-data-table__cell--non-numeric" >
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
@@ -156,7 +157,7 @@
   </tbody>
 </table>
 
- <a href="../views/manage_food.html" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+ <a ng-click="addForm()" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
   <i class="material-icons">add</i>
 </button></a>
 </div>
@@ -182,7 +183,7 @@
 
       </main>
     </div>
-    
+
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
     <script type="text/javascript">
 

@@ -63,8 +63,8 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
         if(!err){
             console.log("added");
             //res.write("food added successfully");
-          res.send("The requested food has beed successfully added.");
-
+          //res.send("The requested food has beed successfully added.");
+res.redirect('../../admin/food');
 
             }
             else{
@@ -74,23 +74,65 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
   }
 
 });
+});
 
+//router to get send data for update
 
+router.get('/updateform', function (req, res) {
+    res.sendFile('update_food.html', { root: path.join(__dirname, '../assets/views') });
+});
 
+router.get('/update/:id', function (req, res) {
+  console.log("req for update id"+req.params.id);
+  foodinfo.findById({_id:req.params.id}, function (err, result) {
+    if(result)
+    {
+        res.send(result);
+    }
+    else {
+      console.log("db error not found");
+      res.send(req.params.id);
+    }
+  })
 
+//
 });
 
 
-
 //route for updating the food information
+
+
+
 router.post('/update',function(req,res){
 
 console.log("The request  in update tagid: "+req.body.fname + " "+req.body._id);
 
-foodinfo.findOneAndUpdate({ _id: '57f0a5e3dfe91d202a978d74' }, { food_name: req.body.fname }, function(err, foodinfo) {
+var protein_dv = parseInt(req.body.protein) / 50;
+var df_dv = parseInt(req.body.fiber) / 25;
+var nutdensity = (protein_dv+df_dv+parseInt(req.body.vitamin_a)+parseInt(req.body.vitamin_c)+parseInt(req.body.calcium)+parseInt(req.body.iron))/6;
+var cal_precent = parseInt(req.body.calories)/ 2000;
+var final_nv = nutdensity/ cal_precent;
+
+
+foodinfo.findOneAndUpdate({ _id: req.body._id }, {
+            "item_name": req.body.fname,
+            "nf_calories": req.body.calories,
+            "nf_calories_from_fat": req.body.calfat,
+            "nf_total_fat": req.body.fat,
+            "nf_total_carbohydrate": req.body.carbs,
+            "nf_dietary_fiber": req.body.fiber,
+            "nf_protein": req.body.protein,
+            "nf_vitamin_a_dv": req.body.vitamin_a,
+            "nf_vitamin_c_dv": req.body.vitamin_c,
+            "nf_calcium_dv": req.body.calcium,
+            "nf_iron_dv": req.body.iron,
+            "nf_serving_weight_grams": req.body.serving,
+            "nutritional_density" : final_nv
+ }, function(err, foodinfo) {
   if (err) throw err;
 
-  res.send(foodinfo);
+  //res.send(req.body.fname + " is Updated successfully");
+  res.redirect('../../admin/food');
   console.log(foodinfo);
 });
 /*
