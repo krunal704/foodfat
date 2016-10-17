@@ -156,10 +156,13 @@
     </tr>
   </tbody>
 </table>
-
- <a ng-click="addForm()" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" data-mdl-for="addbtn">
+Add New Food
+</div>
+ <div id="addbtn" class="add-button" > <a ng-click="addForm()" onmouseover="Add New Food" ><button  class="mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
   <i class="material-icons">add</i>
 </button></a>
+
 </div>
 
 <style type="text/css">

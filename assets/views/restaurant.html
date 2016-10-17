@@ -50,34 +50,43 @@
 		<tr ng-repeat="rest in restaurants">
 		
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{rest.name}}
+				{{rest.rest_name}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
-				{{rest.address}}
+				{{rest.rest_address}}
 			</td>
 			
 			<td class="mdl-data-table__cell--non-numeric" >
-				{{rest.city}}
+				{{rest.rest_city}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
-					ng-click="confirmDelete(feedback.FirstName)">
+					ng-click="updateRest(rest._id, rest.rest_name)">
             <i class="material-icons">edit</i>
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
-					ng-click="confirmRestDelete(rest.name)">
+					ng-click="confirmRestDelete(rest._id, rest.rest_name)">
             <i class="material-icons">delete</i>
 			</td>
 		</tr>
 	</tbody>
 </table>
+ <a ng-click="addForm()" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+  <i class="material-icons">add</i>
+</button></a>
 </div>
 <style type="text/css">
 	.resuarant-container{
 
 	margin: auto;
 	width: 50%;
+}
+.add-button{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  display: block;
 }
 </style>
 

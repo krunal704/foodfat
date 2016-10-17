@@ -76,12 +76,7 @@ res.redirect('../../admin/food');
 });
 });
 
-//router to get send data for update
-
-router.get('/updateform', function (req, res) {
-    res.sendFile('update_food.html', { root: path.join(__dirname, '../assets/views') });
-});
-
+//router to get particular food items data
 router.get('/update/:id', function (req, res) {
   console.log("req for update id"+req.params.id);
   foodinfo.findById({_id:req.params.id}, function (err, result) {

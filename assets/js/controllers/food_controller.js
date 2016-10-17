@@ -1,11 +1,11 @@
 angular.module("food", [])
-	.config(function($locationProvider) {
-												$locationProvider.html5Mode(
-													{
-														enabled: true,
-  													requireBase: false
-													});
-										})//add then successfully get url
+	.config(function($locationProvider){
+		$locationProvider.html5Mode(
+		{
+			enabled: true,
+  			requireBase: false
+		});
+	})//add then successfully get url
 	.controller("food_controller", function ($scope, $http, $location) {
 
 		$scope.fname = " ";
@@ -88,9 +88,11 @@ angular.module("food", [])
 
 				C = null;
 		}
+		
+		//to add form
 		function addForm() {
 			window.location.replace('../views/manage_food.html');
-}
+		}
 
 		$scope.food = food;
 		$scope.foods = foods;
