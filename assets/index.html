@@ -26,9 +26,15 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
+    <script type="text/javascript" src="js/controllers/food_controller.js" ></script>
 
-      <script type="text/javascript" src="js/controllers/food_controller.js" ></script>
+    <!--Jquery Validator scripts-->
+    <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/foodvalidator.js"></script>
+
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -55,7 +61,7 @@
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Home</span>
+          <span class="mdl-layout-title">Manage Feedback</span>
           <div class="mdl-layout-spacer"></div>
 
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
@@ -96,8 +102,59 @@
      </nav>
       </div>
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
+          
+        <div ng-app="feedback" ng-controller="feedback_controller" class="feedbackContainer">
 
+            <header class=" mdl-layout__header-row">
+              <h3></h3>
+            </header>
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp" >
+              <thead>
+                <th class="mdl-data-table__cell--non-numeric">
+                  Name
+                </th >
 
+                <th class="mdl-data-table__cell--non-numeric feedback">
+                  Mail ID
+                </th>
+
+                <th class="mdl-data-table__cell--non-numeric">
+                  Feedback
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                  Date
+                </th>
+                <th class="mdl-data-table__cell--non-numeric">
+                  Delete
+                </th>
+              </thead>
+              <tbody class="">
+                <tr ng-repeat="feedback in feedbacks">
+                  <td class="mdl-data-table__cell--non-numeric">
+                    {{feedback.user_name}}
+
+                  </td>
+                  <td class="mdl-data-table__cell--non-numeric">
+                    {{feedback.user_mailid}}
+                  </td>
+                  <td class="mdl-data-table__cell--non-numeric feedback" style="width: 400px">
+                    <div style="word-wrap: break-all; display: block">
+                    {{feedback.feedback_content}}
+                    </div>
+                  </td>
+                  <td class="">
+                    {{feedback.date}}
+                  </td>
+                  <td class="">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
+                    ng-click="confirmDelete(feedback._id, feedback.user_name)">
+                      <i class="material-icons">delete</i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
 
 
       </main>
