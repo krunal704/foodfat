@@ -9,18 +9,18 @@ angular.module("restaurant", [])
 	.controller("restaurant_controller", function ($scope, $http, $location) {
 		var restaurants = {};
 
-		$scope.name = " "; 
+		$scope.name = " ";
 		$scope.address = " ";
 		$scope.lat = " ";
 		$scope.long = " ";
 		$scope.phone = " ";
-		$scope.email = " "; 
+		$scope.email = " ";
 		$scope.owner_email = " ";
 		$scope.website = " ";
 		$scope.otime = " ";
 		$scope.ctime = " ";
 		$scope.city = " ";
-		$scope.itemid1 = " "; 
+		$scope.itemid1 = " ";
 		$scope.pricei1 = " ";
 		$scope.itemid2 = " ";
 		$scope.pricei2 = " ";
@@ -58,12 +58,25 @@ angular.module("restaurant", [])
 		$scope.itemid3 = res.data.rest_menu.food_id_3;
 		$scope.pricei3 = res.data.rest_menu.food_price_3;
 		$scope.zipcode = res.data.zipcode	;
-			
+
 
 		});
 		}
+		/*$scope.time =  {
+		  "time": {
+		    "from": 1005,
+		    "to": 1020,
+		    "dFrom": 0,
+		    "dTo": 1440,
+		    "step": 15,
+		    "minRange": 15,
+		    "hours24": false
+		  },
+		  "hasDatePickers": false,
+		  "hasTimeSliders": true
+		};
 
-
+*/
 		function updateRest(id, name){
 
 			console.log("before form called");
@@ -85,7 +98,7 @@ angular.module("restaurant", [])
 				console.log("deleted succefully");
 				$http.get('../admin/rest/delete/'+id).then(function (res) {
 					console.log(name +" is "+res.data);
-					
+
 				});
 				$http.get('../admin/rest/getrest').then(function (res) {
 						$scope.restaurants = res.data;
@@ -102,6 +115,5 @@ angular.module("restaurant", [])
 		$scope.addForm = addForm;
 		$scope.updateRest= updateRest;
 
-		
+
 });
-	

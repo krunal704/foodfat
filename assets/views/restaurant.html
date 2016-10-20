@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
+
+
+		<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -23,10 +25,11 @@
 	<!-- CSS and material Icons Files-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css"> 
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.cyan-light_blue.min.css">
 </head>
-<body>
-<div class="resuarant-container" ng-app="restaurant" ng-controller="restaurant_controller">
+<body  >
+
+<div class="resuarant-container" ng-app="restaurant" ng-controller="restaurant_controller" >
 <div class="mdl-header">Restaurant</div>
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp">
 	<thead>
@@ -48,24 +51,24 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="rest in restaurants">
-		
+
 			<td class="mdl-data-table__cell--non-numeric" >
 				{{rest.rest_name}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" style="word-wrap: break-all; width:80%; " >
 				{{rest.rest_address}}
 			</td>
-			
+
 			<td class="mdl-data-table__cell--non-numeric" >
 				{{rest.rest_city}}
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
 					ng-click="updateRest(rest._id, rest.rest_name)">
             <i class="material-icons">edit</i>
 			</td>
 			<td class="mdl-data-table__cell--non-numeric" >
-					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn" 
+					<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
 					ng-click="confirmRestDelete(rest._id, rest.rest_name)">
             <i class="material-icons">delete</i>
 			</td>
