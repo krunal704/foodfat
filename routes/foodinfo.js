@@ -3,6 +3,15 @@ var router = express.Router();
 var path = require('path');
 var foodinfo = require('../models/foodinfo');
 
+
+
+router.get('/search/:sfood', function(req, res){
+  var t = req.params.sfood;
+  console.log("search for "+t);
+  foodinfo.find({item_name: new RegExp(t, 'i')},{item_name:1}, function(err, results) {
+      res.json(results);
+  }).limit(5);
+});
 router.get('/', function (req, res) {
     res.sendFile('food.html', { root: path.join(__dirname, '../assets/views') });
 });

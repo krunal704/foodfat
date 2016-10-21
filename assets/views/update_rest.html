@@ -17,14 +17,14 @@
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.js"></script>
-         <script type="text/javascript" src="../js/restvalidator.js" ></script>
-          <link type="text/css" rel="stylesheet" href="dist/css/materialize.clockpicker.css" media="screen,projection" />
-            <script src="dist/js/materialize.min.js"></script>
-            <script src="dist/js/materialize.clockpicker.js"></script>
+        <script type="text/javascript" src="../js/restvalidator.js" ></script>
+        <link type="text/css" rel="stylesheet" href="dist/css/materialize.clockpicker.css" media="screen,projection" />
+        <script src="dist/js/materialize.min.js"></script>
+        <script src="dist/js/materialize.clockpicker.js"></script>
 
         <!-- jquery locationpicker files-->
 
-<script type="text/javascript" src='http://maps.google.com/maps/api/js?key="AIzaSyBvh66eQTONwGk-P6cJLtZ3mtcfxTO5MPU"'></script>
+        <script type="text/javascript" src='http://maps.google.com/maps/api/js?key="AIzaSyBvh66eQTONwGk-P6cJLtZ3mtcfxTO5MPU"'></script>
         <script type="text/javascript" src="../js/locationpicker.jquery.js" > </script>
 
         <!--getmdl-select-->
@@ -78,7 +78,7 @@
      </nav>
       </div>
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
-         
+
                <div class="formContainer" style="width: 50%; margin: auto; ">
                     <form method="post" id="restaurant-form" action="/admin/rest/update" novalidate action="manage_food.html" autocomplete="off" >
 
@@ -216,16 +216,18 @@
                                      <li class="mdl-menu__item" value="Russia">Russia</li>
                                    </ul>
                                </div>
-                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                                getmdl-select getmdl-select__fullwidth
+                             -->
+                               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" id="sample1" value="" >
                                         <label for="sample1" class="mdl-textfield__label">Country</label>
                                         <ul for="sample1" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
                                             <li class="mdl-menu__item">Germany</li>
                                             <li class="mdl-menu__item">Belarus</li>
                                             <li class="mdl-menu__item">Russia</li>
-                                        </ul>
+                                      </ul>
                                     </div>
-
+<!--
                                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
                                         <input class="mdl-textfield__input" type="text" id="sample2" value="Belarus" tabIndex="-1">
                                         <label for="sample2">
@@ -242,10 +244,12 @@
                              <fieldset>
                                <legend>Menu</legend>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <input class="mdl-textfield__input" type="text" name="itemid1" ng-model="itemid1" >
-                                  <label class="mdl-textfield__label" for="sample3">Item ID 1</label>
-                                </div>
-
+                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid1" ng-model="itemid1" ng-change="searchFood(itemid1)">
+                                  <label class="mdl-textfield__label" for="item1">Item ID 1</label>
+                                <ul  ng-repeat="food in foods">
+                                    <li >{{food.item_name}}</li>
+                                </ul>
+                              </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                  <input class="mdl-textfield__input" type="number" step="0.01" name="pricei1" ng-model="pricei1">
                                  <label class="mdl-textfield__label" for="sample3">Price</label>
@@ -308,8 +312,36 @@
                 </div>
           </main>
         </div>
-        
+
         <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+        <script>
+      /*  $('#item_name').autocomplete({
+        source: function(req,res) {
+            $.ajax({
+                url: "http://www.ejemplo.com:3000/autocomplete/"+req.term,
+                dataType: "json",
+                type: "GET",
+                data: {
+                    term: req.term
+                },
+                success: function(data) {
+                    res($.map(data, function(item) {
+                        return {
+                            label: item.text,//text comes from a collection of mongo
+                            value: item.text
+                        };
+                    }));
+                },
+                error: function(xhr) {
+                    alert(xhr.status + ' : ' + xhr.statusText);
+                }
+            });
+        },
+        select: function(event, ui) {
+
+        }
+    });
+        */</script>
      <style type="text/css">
       .resuarant-container{
 
@@ -324,7 +356,7 @@
     }
     </style>
 
-    
+
     <script type="text/javascript">
     $('.timepicker').pickatime({
     default: 'now',

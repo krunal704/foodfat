@@ -109,6 +109,13 @@ angular.module("restaurant", [])
 			}
 				C = null;
 		}
+		$scope.searchFood = function(sfood) {
+		//	console.log("searching "+food);
+			$http.get('../admin/food/search/'+sfood).then(function (res) {
+				$scope.foods = res.data;
+			});
+		}
+
 		$scope.confirmRestDelete = confirmRestDelete;
 		$scope.restaurants = restaurants;
 		$scope.getRest = getRest;
