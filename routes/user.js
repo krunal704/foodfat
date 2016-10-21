@@ -95,13 +95,13 @@ user.findOne({ "email":req.body.email }, function(err, result) {
 		}
         else if(result)
         {
-        	console.log("locha11");
-        	res.send(result);
+        	console.log("The user already exists");
+        	res.send(0);
         }
         else
         {
-        	console.log("locha");
-					res.send(result);
+        	console.log("No such user!");
+					res.send(1);
 			    }
 
  });
