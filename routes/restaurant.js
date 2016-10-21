@@ -49,6 +49,10 @@ router.post('/add',function(req,res){
 		"food_price_2" : req.body.pricei2,
 		"food_id_3" : req.body.itemid3,
 		"food_price_3" : req.body.pricei3,
+  	},
+		"Location":{
+					"type":'Point',
+					"coordinates":[req.body.Latitude,req.body.Longitude]
 		},
 		"zipcode" : req.body.zipcode
 	//	"country_id" : req.body.country_id,
@@ -93,7 +97,7 @@ router.post('/update',function(req,res){
 
 console.log("The request  in update tagid: "+req.body.name+" "+req.body.email);
 
-restaurant.findOneAndUpdate({ _id: req.body._id }, { 
+restaurant.findOneAndUpdate({ _id: req.body._id }, {
 		"rest_name" : req.body.name,
 		"rest_address" : req.body.address,
 		"rest_loc_lat" : req.body.lat,

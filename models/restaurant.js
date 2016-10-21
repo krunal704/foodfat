@@ -22,6 +22,12 @@ var restaurantSchema = new mongoose.Schema({
 		"food_id_3" : Number,
 		"food_price_3" : Number,
 	},
+	"Location":{
+				"type":{
+						"type":String,"enum":["Point"]
+				},
+				"coordinates":[Number]
+	},
 	"zipcode":String,
 //	"country_id":String,
 	"rating":String,
