@@ -61,7 +61,7 @@
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Manage Feedback</span>
+          <span class="mdl-layout-title">Home</span>
           <div class="mdl-layout-spacer"></div>
 
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
@@ -102,85 +102,23 @@
      </nav>
       </div>
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
-          
-        <div ng-app="feedback" ng-controller="feedback_controller" class="feedbackContainer">
-
-            <header class=" mdl-layout__header-row">
-              <h3></h3>
-            </header>
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--responsive mdl-shadow--2dp" >
-              <thead>
-                <th class="mdl-data-table__cell--non-numeric">
-                  Name
-                </th >
-
-                <th class="mdl-data-table__cell--non-numeric feedback">
-                  Mail ID
-                </th>
-
-                <th class="mdl-data-table__cell--non-numeric">
-                  Feedback
-                </th>
-                <th class="mdl-data-table__cell--non-numeric">
-                  Date
-                </th>
-                <th class="mdl-data-table__cell--non-numeric">
-                  Delete
-                </th>
-              </thead>
-              <tbody class="">
-                <tr ng-repeat="feedback in feedbacks">
-                  <td class="mdl-data-table__cell--non-numeric">
-                    {{feedback.user_name}}
-
-                  </td>
-                  <td class="mdl-data-table__cell--non-numeric">
-                    {{feedback.user_mailid}}
-                  </td>
-                  <td class="mdl-data-table__cell--non-numeric feedback" style="width: 400px">
-                    <div style="word-wrap: break-all; display: block">
-                    {{feedback.feedback_content}}
-                    </div>
-                  </td>
-                  <td class="">
-                    {{feedback.date}}
-                  </td>
-                  <td class="">
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn"
-                    ng-click="confirmDelete(feedback._id, feedback.user_name)">
-                      <i class="material-icons">delete</i>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
-
-
+         
       </main>
     </div>
     
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <script type="text/javascript">
+ <style type="text/css">
+  .resuarant-container{
 
-  /*  function loadFeedback() {
-  var xhttp;
-  if (window.XMLHttpRequest) {
-    // code for modern browsers
-    xhttp = new XMLHttpRequest();
-    } else {
-    // code for IE6, IE5
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("main").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "views/manage_feedback.html", true);
-  xhttp.send();
+  margin: auto;
+  width: 50%;
 }
-*/
-  </script>
+.add-button{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  display: block;
+}
+</style>
   </body>
 </html>
