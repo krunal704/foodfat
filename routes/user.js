@@ -96,12 +96,12 @@ user.findOne({ "email":req.body.email }, function(err, result) {
         else if(result)
         {
         	console.log("The user already exists");
-        	res.send(0);
+        	res.send("0");
         }
         else
         {
         	console.log("No such user!");
-					res.send(1);
+					res.send("1");
 			    }
 
  });
