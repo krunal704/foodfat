@@ -51,7 +51,7 @@ console.log("The request  in update tagid: "+req.body.fname+" "+req.body.email);
 user.findOneAndUpdate({ _id: '57eecefc257a430951f6009e' }, { firstName: req.body.name,email : req.body.email }, function(err, restaurant) {
   if (err) throw err;
 
-  res.send(user);  
+  res.send(user);
   console.log(user);
 });
 
@@ -72,7 +72,7 @@ user.find({ 'userName': req.body.fname,'email':req.body.pass }, function(err, us
         }
         if (user.length!=0) {
           if(user[0].userName){
-            	console.log('Username already exists, username: ' + req.body.fname);                         
+            	console.log('Username already exists, username: ' + req.body.fname);
              }
         else
         {
@@ -96,14 +96,14 @@ user.findOne({ "email":req.body.email }, function(err, result) {
         else if(result)
         {
         	console.log("locha11");
-        	res.send("0");
+        	res.send(result);
         }
         else
         {
         	console.log("locha");
-        	res.send("1");
-        }
-    
+					res.send(result);
+			    }
+
  });
 });
 
@@ -117,7 +117,7 @@ console.log("Deleted record successfully"+req.params.restID);
       if(err) throw err;
       else
       console.log("Deleted record successfully");
-  });  
+  });
 
 });
 
