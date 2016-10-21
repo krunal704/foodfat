@@ -26,9 +26,15 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="images/android-desktop.png">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
+    <script type="text/javascript" src="js/controllers/food_controller.js" ></script>
 
-      <script type="text/javascript" src="js/controllers/food_controller.js" ></script>
+    <!--Jquery Validator scripts-->
+    <script src="http://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/foodvalidator.js"></script>
+
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -96,34 +102,23 @@
      </nav>
       </div>
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
-
-
-
-
+         
       </main>
     </div>
     
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-    <script type="text/javascript">
+ <style type="text/css">
+  .resuarant-container{
 
-  /*  function loadFeedback() {
-  var xhttp;
-  if (window.XMLHttpRequest) {
-    // code for modern browsers
-    xhttp = new XMLHttpRequest();
-    } else {
-    // code for IE6, IE5
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("main").innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("GET", "views/manage_feedback.html", true);
-  xhttp.send();
+  margin: auto;
+  width: 50%;
 }
-*/
-  </script>
+.add-button{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  display: block;
+}
+</style>
   </body>
 </html>
