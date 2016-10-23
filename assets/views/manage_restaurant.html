@@ -80,7 +80,7 @@
      </nav>
       </div>
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
-         <div class="formContainer" style="width: 60%; margin: auto; ">
+         <div class="formContainer">
     <form method="post" id="restaurant-form" action="/admin/rest/add" novalidate action="manage_food.html" autocomplete="off" >
     
       <table>          
@@ -142,7 +142,7 @@
            </div>
           
            <fieldset>
-             <legend>Location</legend>
+             <legend class="mdl-js-textfield">Location</legend>
             
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="lat" name="lat" >
@@ -232,7 +232,7 @@
                     </div>
             -->
              <fieldset>
-               <legend>Menu</legend>
+               <legend class="mdl-js-textfield">Menu</legend>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="text" name="itemid1" >
                   <label class="mdl-textfield__label" for="sample3">Item ID 1</label>
@@ -295,12 +295,34 @@
 
                      
                 </table>    
-                <button type="submit" name="Submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
+                <button type="submit" name="Submit" value="Submit" class="submit-btn center mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
              </form>
           </div>
       </main>
     </div>
     
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <style type="text/css">
+        .formContainer{
+  max-width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.mdl-js-textfield{
+  margin-left: 5%;
+  width: 40%
+}
+      
+    .submit-btn{
+  display: block;
+  margin:auto;
+}
+    
+  
+      
+  
+      
+    </style>
 </body>
 </html>

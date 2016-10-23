@@ -132,8 +132,8 @@
                   <td class="mdl-data-table__cell--non-numeric">
                     {{feedback.user_mailid}}
                   </td>
-                  <td class="mdl-data-table__cell--non-numeric feedback" style="width: 400px">
-                    <div style="word-wrap: break-all; display: block">
+                  <td class="mdl-data-table__cell--non-numeric feedback" style="">
+                    <div style="">
                     {{feedback.feedback_content}}
                     </div>
                   </td>
@@ -154,7 +154,21 @@
 
       </main>
     </div>
-    
+    <style type="text/css">
+      
+      .feedbackContainer{
+        display: block;
+        width: relative;
+        margin: 0% 5% 0% 5%;
+        overflow: scroll;
+      }
+      
+      .mdl-data-table {
+        white-space: initial;
+  
+      }
+
+    </style>
     
   </body>
 </html>

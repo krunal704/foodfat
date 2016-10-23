@@ -120,7 +120,10 @@
                         </tr>
                       </tbody>
                     </table>
-                     <a ng-click="addForm()" onmouseover="Add New Food" ><button class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" data-mdl-for="addbtn">
+Add New Restaurant
+</div>
+                     <a ng-click="addForm()"><button id="addbtn" class="add-button mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                       <i class="material-icons">add</i>
                     </button></a>
                     </div>
@@ -131,9 +134,12 @@
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
  <style type="text/css">
   .resuarant-container{
-
-  margin: auto;
-  width: 50%;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
 }
 .add-button{
   position: fixed;

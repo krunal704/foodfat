@@ -111,9 +111,14 @@ angular.module("restaurant", [])
 		}
 		$scope.searchFood = function(sfood) {
 		//	console.log("searching "+food);
+			if (sfood.trim()!="" || sfood != null) {
 			$http.get('../admin/food/search/'+sfood).then(function (res) {
 				$scope.foods = res.data;
 			});
+		}
+		else{
+			$scope.foods = {};
+		}
 		}
 
 		$scope.confirmRestDelete = confirmRestDelete;

@@ -244,7 +244,7 @@
                              <fieldset>
                                <legend>Menu</legend>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid1" ng-model="itemid1" ng-change="searchFood(itemid1)">
+                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid1" ng-model="itemid1" ng-change="searchFood(itemid1)" style="display:flex;">
                                   <label class="mdl-textfield__label" for="item1">Item ID 1</label>
                                 <ul  ng-repeat="food in foods">
                                     <li >{{food.item_name}}</li>
