@@ -14,14 +14,24 @@ var restaurantSchema = new mongoose.Schema({
 	"restraunt_website":String,
 	//"rest_time":String,
 	"rest_city":String,
+	"rest_menu" : 
+	[
+			{
+				"food_id":String,
+				"food_price":Number
+			}
+	],
+	/*
+	old rest menu style
 	"rest_menu":{
+	
 		"food_id_1" : Number,
 		"food_price_1" : Number,
 		"food_id_2" : Number,
 		"food_price_2" : Number,
 		"food_id_3" : Number,
 		"food_price_3" : Number,
-	},
+	},*/
 	"Location":{
 				"type":{
 						"type":String,"enum":["Point"]
