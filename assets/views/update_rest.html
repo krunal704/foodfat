@@ -23,8 +23,9 @@
         <script src="dist/js/materialize.clockpicker.js"></script>
         <!-- jquery locationpicker files-->
 
-        <script type="text/javascript" src='http://maps.google.com/maps/api/js?key="AIzaSyBvh66eQTONwGk-P6cJLtZ3mtcfxTO5MPU"'></script>
+        <script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyBvh66eQTONwGk-P6cJLtZ3mtcfxTO5MPU'></script>
         <script type="text/javascript" src="../js/locationpicker.jquery.js" > </script>
+        <script type="text/javascript" src="https://raw.githubusercontent.com/Logicify/jquery-locationpicker-plugin/master/dist/angularLocationpicker.jquery.js"></script>
            <!--getmdl-select-->   
    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
@@ -147,7 +148,7 @@
                            </div>
 
                            <div id="example" style="width: 500px; height: 400px;"></div>
-
+                          <locationpicker options="locationpickerOptions"></locationpicker>
                            <fieldset>
                              <legend>Location</legend>
 
@@ -428,7 +429,7 @@
   autoclose: false,
   vibrate: true // vibrate the device when dragging clock hand
 });
-
+/*
 $('#example').locationpicker({
 
   // these are default options

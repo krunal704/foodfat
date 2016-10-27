@@ -23,9 +23,9 @@
         <script src="dist/js/materialize.clockpicker.js"></script>
         <!-- jquery locationpicker files-->
 
-        <script type="text/javascript" src='http://maps.google.com/maps/api/js?key="AIzaSyBvh66eQTONwGk-P6cJLtZ3mtcfxTO5MPU"'></script>
+        <script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyBRGof5lDbKztWek7bIkV2qUTznyRyxyk8'></script>
         <script type="text/javascript" src="../js/locationpicker.jquery.js" > </script>
-           <!--getmdl-select-->   
+           <!--getmdl-select-->
    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
 
@@ -146,7 +146,7 @@
                             <label class="mdl-textfield__label" for="sample3">Zipcode</label>
                            </div>
 
-                           <div id="example" style="width: 500px; height: 400px;"></div>
+                           <div id="example" style="width: inherit; height: 400px;"></div>
 
                            <fieldset>
                              <legend>Location</legend>
@@ -254,7 +254,7 @@
                                  <label class="mdl-textfield__label" for="sample3">Price 1</label>
                                 </div>
                                 <div id="space-for-buttons"></div>
-                                <addbuttonsbutton></addbuttonsbutton> 
+                                <addbuttonsbutton></addbuttonsbutton>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                  <input class="mdl-textfield__input" type="text" name="itemid2" ng-model="itemid2" >
@@ -266,7 +266,7 @@
                                  <label class="mdl-textfield__label" for="sample3">Price</label>
                                 </div>
 
-                               
+
                             </fieldset>
 
         <div>
@@ -284,7 +284,7 @@
                 <li class="mdl-menu__item">Russia</li>
             </ul>
         </div>
-        
+
                         <!--
 
 
@@ -365,7 +365,7 @@
       display: block;
     }
     .result{
-       display: block;
+       
     position: absolute;
     top: 100px;
     left: 0;
@@ -401,11 +401,11 @@ $('#example').locationpicker({
 
   // these are default options
   location: {
-    latitude: 40.7324319,
-    longitude: -73.82480799999996
+    latitude: 23.0225,
+    longitude: 72.5714
   },
   locationName: "",
-  radius: 500,
+  radius: 0,
   zoom: 15,
   scrollwheel: true,
   inputBinding: {

@@ -41,8 +41,8 @@ angular.module("restaurant", [])
 		var restaurants = {};
 		
 		$scope.count = 1;
-
-		$scope.res = {
+		$scope.res = [];
+		$scope.res[1] = {
 			"display":"none"
 		};
 
@@ -179,7 +179,23 @@ angular.module("restaurant", [])
 		}
 
 		//$scope.menu = [{"id":"1","p":"200"},{"id":"2","p":"300"}];
-
+			$scope.lat = 23.0225;
+			$scope.long = 72.5714;
+		  $scope.locationpickerOptions = {
+                location: {
+                    latitude: $scope.lat,
+                       longitude: $scope.long
+        	       },
+            	inputBinding: {
+                    latitudeInput: $('#us3-lat'),
+                    longitudeInput: $('#us3-lon'),
+                    radiusInput: $('#us3-radius'),
+                    locationNameInput: $('#us3-address')
+                },
+                radius: 0,
+                enableAutocomplete: true
+        }
+		
 		$scope.foods = [];
 		$scope.confirmRestDelete = confirmRestDelete;
 		$scope.restaurants = restaurants;
