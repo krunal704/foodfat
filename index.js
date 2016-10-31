@@ -3,6 +3,7 @@ var express = require('express');
 var logger = require('morgan');
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
 
 //connecting to database
 
@@ -27,7 +28,7 @@ app.use("/admin/rest",require('./routes/testing'))
 app.use("/admin/feedback",require('./routes/feedback'))
 
 app.use("/appuser/login",require('./routes/user'))
-
+app.use("/range", express.static(__dirname+'/bower_components/datetimeRangePicker'))
 
 app.use(express.static(__dirname+'/assets'));
 

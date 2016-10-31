@@ -1,4 +1,4 @@
-angular.module("restaurant", [])
+angular.module("restaurant", ['rgkevin.datetimeRangePicker'])
 	.config(function($locationProvider){
 		$locationProvider.html5Mode(
 		{
@@ -25,15 +25,30 @@ angular.module("restaurant", [])
 								'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                 '<input id="item1" class="mdl-textfield__input" type="text" name="itemid'+scope.count+'" ng-model="item['+scope.count+']" ng-change="searchFood(item['+scope.count+'], '+scope.count+')">'+
                 '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+scope.count+'</label>'+
-                '<ul   class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
+                '<ul class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
                 '<li class="mdl-layout" ng-repeat="food in foods['+scope.count+']" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,'+scope.count+')" >{{food.item_name}}</li>'+
+				'</ul></div>'+
 				'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-                '</ul></div>'+
                 '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="price['+scope.count+']">'+
                 '<label class="mdl-textfield__label" for="sample3">Price '+scope.count+'</label>'+
                 '</div>')(scope));
 				});
 			};
+	})
+	.directive("myDatetimeRange", function () {
+		return {
+					"time": {
+		    "from": 480,
+		    "to": 1155,
+		    "dFrom": 0,
+		    "dTo": 1440,
+		    "step": 15,
+		    "minRange": 15,
+		    "hours24": false
+		  },
+		  "hasDatePickers": false,
+		  "hasTimeSliders": true
+		};
 	})
 
 	.controller("restaurant_controller", function ($scope, $http, $location) {
