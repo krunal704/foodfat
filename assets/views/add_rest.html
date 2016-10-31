@@ -19,7 +19,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.js"></script>
         <script type="text/javascript" src="../js/restvalidator.js" ></script>
         <link type="text/css" rel="stylesheet" href="dist/css/materialize.clockpicker.css" media="screen,projection" />
-        <script src="dist/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.js"></script>
         <script src="dist/js/materialize.clockpicker.js"></script>
         <!-- jquery locationpicker files-->
 
@@ -89,7 +89,7 @@
                              </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                              <input class="mdl-textfield__input validate" type="text" ng-model="address" name="address" >
+                              <input class="mdl-textfield__input validate" type="text" id="address" ng-model="address" name="address" >
                               <label class="mdl-textfield__label" for="sample3">Address</label>
                             </div>
 
@@ -365,7 +365,7 @@
       display: block;
     }
     .result{
-       
+
     position: absolute;
     top: 100px;
     left: 0;
@@ -393,8 +393,8 @@
     default: 'now',
     twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
     donetext: 'OK',
-  autoclose: false,
-  vibrate: true // vibrate the device when dragging clock hand
+  autoclose: true,
+  vibrate: false // vibrate the device when dragging clock hand
 });
 
 $('#example').locationpicker({
@@ -409,10 +409,10 @@ $('#example').locationpicker({
   zoom: 15,
   scrollwheel: true,
   inputBinding: {
-      latitudeInput: null,
-      longitudeInput: null,
+    latitudeInput: $('#lat'),
+    longitudeInput: $('#long'),
       radiusInput: null,
-      locationNameInput: null
+      locationNameInput: $('#address')
   },
   //enable<a href="http://www.jqueryscript.net/tags.php?/autocomplete/">Autocomplete</a>: false,
   enableAutocompleteBlur: false,

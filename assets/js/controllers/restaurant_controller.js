@@ -23,23 +23,23 @@ angular.module("restaurant", [])
 					angular.element(document.getElementById('space-for-buttons')).append(
 						$compile(
 								'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-                                '<input id="item1" class="mdl-textfield__input" type="text" name="itemid'+scope.count+'" ng-model="item['+scope.count+']" ng-change="searchFood(item['+scope.count+'], '+scope.count+')">'+
-                                '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+scope.count+'</label>'+
-                                '<ul   class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
-                                '<li class="mdl-layout" ng-repeat="food in foods['+scope.count+']" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,'+scope.count+')" >{{food.item_name}}</li>'+
-                                '</ul></div>'+
-                                '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-                                '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="price['+scope.count+']">'+
-                                '<label class="mdl-textfield__label" for="sample3">Price '+scope.count+'</label>'+
-                                '</div>')(scope));
+                '<input id="item1" class="mdl-textfield__input" type="text" name="itemid'+scope.count+'" ng-model="item['+scope.count+']" ng-change="searchFood(item['+scope.count+'], '+scope.count+')">'+
+                '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+scope.count+'</label>'+
+                '<ul   class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
+                '<li class="mdl-layout" ng-repeat="food in foods['+scope.count+']" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,'+scope.count+')" >{{food.item_name}}</li>'+
+				'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                '</ul></div>'+
+                '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="price['+scope.count+']">'+
+                '<label class="mdl-textfield__label" for="sample3">Price '+scope.count+'</label>'+
+                '</div>')(scope));
 				});
 			};
 	})
 
 	.controller("restaurant_controller", function ($scope, $http, $location) {
-		
+
 		var restaurants = {};
-		
+
 		$scope.count = 1;
 		$scope.res = [];
 		$scope.res[1] = {
@@ -135,7 +135,7 @@ angular.module("restaurant", [])
 				$http.get('../admin/rest/delete/'+id).then(function (res) {
 					console.log(name +" is "+res.data);
 				});
-			
+
 				$http.get('../admin/rest/getrest').then(function (res) {
 						$scope.restaurants = res.data;
 				});
@@ -146,10 +146,10 @@ angular.module("restaurant", [])
 			}
 				C = null;
 		}
-		
+
 		$scope.searchFood = function(sfood, i) {
 		//	console.log("searching "+food);
-				
+
 			console.log("food is :"+sfood+" with trim "+sfood.trim());
 			if (sfood.trim()=="" || sfood == null) {
 				$scope.res[i] = {
@@ -164,7 +164,7 @@ angular.module("restaurant", [])
 				});
 			}
 		}
-		
+
 		$scope.selectFood = function (id, name, i){
 			$scope.res[i] = {
 				"display":"none"
@@ -187,15 +187,15 @@ angular.module("restaurant", [])
                        longitude: $scope.long
         	       },
             	inputBinding: {
-                    latitudeInput: $('#us3-lat'),
-                    longitudeInput: $('#us3-lon'),
-                    radiusInput: $('#us3-radius'),
-                    locationNameInput: $('#us3-address')
+          //          latitudeInput: $('#lat'),
+        //            longitudeInput: $('#long'),
+              //      radiusInput: $('#us3-radius'),
+      //              locationNameInput: $('#address')
                 },
                 radius: 0,
                 enableAutocomplete: true
         }
-		
+
 		$scope.foods = [];
 		$scope.confirmRestDelete = confirmRestDelete;
 		$scope.restaurants = restaurants;
