@@ -1,4 +1,4 @@
-angular.module("restaurant", ['rgkevin.datetimeRangePicker'])
+angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 	.config(function($locationProvider){
 		$locationProvider.html5Mode(
 		{
