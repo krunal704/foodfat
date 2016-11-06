@@ -10,6 +10,7 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 	.directive("addbuttonsbutton", function(){
 		return {
 				restrict: "E",
+			//	scope:true,
 				template: '<button addbuttons class="mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">add</i></button>'
 			}
 	})
@@ -19,17 +20,19 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 
 			return function(scope, element, attrs){
 				element.bind("click", function(){
+					
 					scope.count++;
+				//	scope.item[scope.count] = " ";
 					angular.element(document.getElementById('space-for-buttons')).append(
 						$compile(
-								'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+								'<div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                 '<input id="item1" class="mdl-textfield__input" type="text" name="itemid'+scope.count+'" ng-model="item['+scope.count+']" ng-change="searchFood(item['+scope.count+'], '+scope.count+')">'+
                 '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+scope.count+'</label>'+
                 '<ul class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
                 '<li class="mdl-layout" ng-repeat="food in foods['+scope.count+']" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,'+scope.count+')" >{{food.item_name}}</li>'+
 				'</ul></div>'+
-				'<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-                '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="price['+scope.count+']">'+
+				'<div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="menu['+scope.count+'].food_price">'+
                 '<label class="mdl-textfield__label" for="sample3">Price '+scope.count+'</label>'+
                 '</div>')(scope));
 				});
@@ -50,7 +53,31 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		  "hasTimeSliders": true
 		};
 	})
-
+	/*.directive("mapdirective", function (scope) {
+		return {
+			location: {
+			    latitude: 23.022579,
+			    longitude: 72.571456
+			  },
+			  locationName: "",
+			  radius: 0,
+			  zoom: 15,
+			  scrollwheel: true,
+			  inputBinding: {
+			    latitudeInput: scope.lat,//$('#lat'),
+			    longitudeInput: scope.long,//$('#long'),
+			      radiusInput: null,
+			      locationNameInput: scope.address//$('#address')
+			  },
+			  //enable<a href="http://www.jqueryscript.net/tags.php?/autocomplete/">Autocomplete</a>: false,
+			  enableAutocompleteBlur: true,
+			  enableReverseGeocode: true,
+			  draggable: true,
+			  // must be undefined to use the default gMaps marker
+			  markerIcon: undefined
+		}
+	})
+*/
 	.controller("restaurant_controller", function ($scope, $http, $location) {
 
 		var restaurants = {};
@@ -58,28 +85,34 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		$scope.count = 1;
 		$scope.res = [];
 		$scope.res[1] = {
-			"display":"none"
-		};
+			"display":"none",
+			"position":"absolute"
+				};
+		$scope.initialize = initialize;
+		function initialize() {
+				$scope.name = " ";
+				$scope.address = " ";
+				$scope.lat = " ";
+				$scope.long = " ";
+				$scope.phone = 0;
+				$scope.email = "abc@xyz.com";
+				$scope.owner_email = "abc@xyz.com";
+				$scope.website = " ";
+				$scope.otime = " ";
+				$scope.ctime = " ";
+				$scope.city = " ";
+				$scope.itemid1 = " ";
+				$scope.pricei1 = " ";
+				$scope.itemid2 = " ";
+				$scope.pricei2 = " ";
+				$scope.itemid3 = " ";
+				$scope.pricei3 = " ";
+				$scope.zipcode = " ";
+			}
 
-		$scope.name = " ";
-		$scope.address = " ";
-		$scope.lat = " ";
-		$scope.long = " ";
-		$scope.phone = " ";
-		$scope.email = " ";
-		$scope.owner_email = " ";
-		$scope.website = " ";
-		$scope.otime = " ";
-		$scope.ctime = " ";
-		$scope.city = " ";
-		$scope.itemid1 = " ";
-		$scope.pricei1 = " ";
-		$scope.itemid2 = " ";
-		$scope.pricei2 = " ";
-		$scope.itemid3 = " ";
-		$scope.pricei3 = " ";
-		$scope.zipcode = " ";
-
+		
+			// body...
+		
 
 		$http.get('../admin/rest/getrest').then(function (res) {
 			$scope.restaurants = res.data;
@@ -138,7 +171,7 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 
 		}
 		function addForm() {
-			window.location.replace('../views/manage_restaurant.html');
+			window.location.replace('../views/add_rest.html');
 		}
 
 
@@ -166,14 +199,34 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		//	console.log("searching "+food);
 
 			console.log("food is :"+sfood+" with trim "+sfood.trim());
-			if (sfood.trim()=="" || sfood == null) {
+			if (sfood == null || sfood.trim()=="") {
 				$scope.res[i] = {
 					"display":"none"
+					
 				};
 			}
 			else
 			{
-				$scope.res[i] = { "display" : "block" };
+				$scope.res[i] = { 
+					"display" : "block",
+					"position": "absolute",
+				    "top": "71%",
+				    "left": "0",
+				    "right": "0",
+				    "z-index": "10",
+				    "padding": "0",
+				    "margin": "0",
+				    "border-width": "1px",
+				    "border-style": "solid",
+				    "border-color": "#cbcfe2 #c8cee7 #c4c7d7",
+				    "border-radius": "3px",
+				    "background-color": "#fdfdfd",
+				    "-webkit-box-shadow": "0 1px 2px rgba(0, 0, 0, 0.1)",
+				    "-moz-box-shadow": "0 1px 2px rgba(0, 0, 0, 0.1)",
+				    "-ms-box-shadow": "0 1px 2px rgba(0, 0, 0, 0.1)",
+				    "-o-box-shadow": "0 1px 2px rgba(0, 0, 0, 0.1)",
+				    "box-shadow": "0 1px 2px rgba(0, 0, 0, 0.1)"
+				 };
 				$http.get('../admin/food/search/'+sfood).then(function (res) {
 					$scope.foods[i] = res.data;
 				});
@@ -183,19 +236,21 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		$scope.selectFood = function (id, name, i){
 			$scope.res[i] = {
 				"display":"none"
+				
 			};
 			$scope.item[i] = name;
+			$scope.menu[i].food_id = id;
 		//	$scope.menu.push({"food_id":id,"food_price":name});
-			console.log(i+" select food id "+id+" name is "+$scope.item[i]);
+			console.log(i+" select food id "+id+" name is "+$scope.menu[i].food_id+" name "+$scope.item[i]);
 		}
 
 		$scope.addElement = function(id, price,i){
-			$scope.menu[i] = {"food_id":id,"food_price":price};
+			$scope.menu.push({"food_id":id,"food_price":price});
 		}
 
 		//$scope.menu = [{"id":"1","p":"200"},{"id":"2","p":"300"}];
-			$scope.lat = 23.0225;
-			$scope.long = 72.5714;
+		/*	$scope.lat = $scope.lat;
+			$scope.long = $scope.long;
 		  $scope.locationpickerOptions = {
                 location: {
                     latitude: $scope.lat,
@@ -209,7 +264,7 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
                 },
                 radius: 0,
                 enableAutocomplete: true
-        }
+        }*/
 
 		$scope.foods = [];
 		$scope.confirmRestDelete = confirmRestDelete;

@@ -32,11 +32,7 @@ $("#restaurant-form").validate({
         required: true,
         minlength: 5
       },
-      cpassword: {
-        required: true,
-        minlength: 5,
-        equalTo: "#password"
-      },
+     
       zipcode: {
                 required: true,
                 maxlength:6,
