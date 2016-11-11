@@ -6,40 +6,52 @@ $(document).ready(function() {
 $("#restaurant-form").validate({
 
         rules: {
-           name: {
+            
+            name: {
                 required: true,
                 minlength: 5
             },
-           phone: {
+            
+            phone: {
                 required: true,
-                minlength: 10
+                minlength: 10,
+                maxlength: 10
    //             pattern:"[789][0-9]{9}"
             },
-            otime:{
-              required:true
 
+            city:{
+                required:true
             },
-            ctime:{
-              required:true
 
+            otime:{
+                required:true
+            },
+
+            ctime:{
+                required:true
             },
 
             email: {
-                required: true,
                 email:true
             },
+
             address: {
-        required: true,
-        minlength: 5
-      },
+                required: true,
+                minlength: 5
+            },
      
-      zipcode: {
+            zipcode: {
                 required: true,
                 maxlength:6,
                 minlength:6
             }
+            price : {
+                required:true
+            }
 
-
+            item : {
+                required:true
+            }
 
           },
         //For custom messages
@@ -53,7 +65,7 @@ $("#restaurant-form").validate({
             },
             phone:{
               required:"Enter Mobile number",
-              minlength:"Enter valid mobile number",
+              minlength:"Enter valid mobile number"
       //        pattern:"Not a valid number"
             },
             zipcode:{

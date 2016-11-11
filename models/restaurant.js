@@ -18,27 +18,18 @@ var restaurantSchema = new mongoose.Schema({
 	[
 			{
 				"food_id":String,
+				"food_name":String,
 				"food_price":Number
 			}
 	],
-	/*
-	old rest menu style
-	"rest_menu":{
-	
-		"food_id_1" : Number,
-		"food_price_1" : Number,
-		"food_id_2" : Number,
-		"food_price_2" : Number,
-		"food_id_3" : Number,
-		"food_price_3" : Number,
-	},*/
+
 	"Location":{
 				"type":{
 						"type":String,"enum":["Point"]
 				},
 				"coordinates":[Number]
 	},
-	"zipcode":String,
+	"zipcode":Number,
 //	"country_id":String,
 	"rating":String,
 //	"rest_food_type":String

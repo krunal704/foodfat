@@ -4,6 +4,7 @@ var logger = require('morgan');
 var bodyparser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
+var session = require('express-session');
 
 //connecting to database
 
@@ -15,6 +16,8 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 app.use(logger('dev'));
 
+//initialize session
+app.use(session({secret: 'jasnfbaonbfpusnfjsblhgrougvyrwfhsbdhf'}));
 
 //routes
 app.use("/admin/user",require('./routes/user'))

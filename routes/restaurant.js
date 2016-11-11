@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var session = require('express-session');
 //models
 //router
 
@@ -28,7 +29,7 @@ router.post('/add',function(req,res){
 	console.log("reached to add functionality!!");
 	console.log("l;amsc;lasc: "+req.body.name);
 
-
+	console.log(req.body);
 	var restaurant_inf = new restaurant({
 		"rest_name" : req.body.name,
 		"rest_address" : req.body.address,
@@ -42,23 +43,16 @@ router.post('/add',function(req,res){
 		"rest_open_time" : req.body.otime,
 		"rest_close_time" : req.body.ctime,
 		"rest_city" : req.body.city,
-		"rest_menu" : {
-		"food_id_1" : req.body.itemid1,
-		"food_price_1" : req.body.pricei1,
-		"food_id_2" : req.body.itemid2,
-		"food_price_2" : req.body.pricei2,
-		"food_id_3" : req.body.itemid3,
-		"food_price_3" : req.body.pricei3,
-  	},
+		"rest_menu" : req.body.menu,
 		"Location":{
 					"type":'Point',
-					"coordinates":[req.body.Latitude,req.body.Longitude]
+					"coordinates":[req.body.lat,req.body.long]
 		},
 		"zipcode" : req.body.zipcode
 	//	"country_id" : req.body.country_id,
 	//	"rating" : req.body.rating,
 	//	"rest_food_type" : req.body.food_type
-	})
+	});
 	restaurant_inf.save(function(err,result){
 		console.log("Came to sace");
 		if(!err){
@@ -70,7 +64,7 @@ router.post('/add',function(req,res){
 				res.send("restaurant not added "+err);
 			}
 
-	})
+	});
 });
 
 
@@ -97,7 +91,7 @@ router.post('/update',function(req,res){
 
 console.log("The request  in update tagid: "+req.body.name+" "+req.body.email);
 
-restaurant.findOneAndUpdate({ _id: req.body._id }, {
+restaurant.findOneAndUpdate({ _id: req.body.id }, {
 		"rest_name" : req.body.name,
 		"rest_address" : req.body.address,
 		"rest_loc_lat" : req.body.lat,
@@ -110,23 +104,26 @@ restaurant.findOneAndUpdate({ _id: req.body._id }, {
 		"rest_open_time" : req.body.otime,
 		"rest_close_time" : req.body.ctime,
 		"rest_city" : req.body.city,
-		"rest_menu" : {
-		"food_id_1" : req.body.itemid1,
-		"food_price_1" : req.body.pricei1,
-		"food_id_2" : req.body.itemid2,
-		"food_price_2" : req.body.pricei2,
-		"food_id_3" : req.body.itemid3,
-		"food_price_3" : req.body.pricei3,
+		"rest_menu" : req.body.menu,
+		"Location":{
+					"type":'Point',
+					"coordinates":[req.body.lat,req.body.long]
 		},
 		"zipcode" : req.body.zipcode
 	}, function(err, restaurant) {
-  if (err) throw err;
-  else res.send("Rest updated successfully");
-
+  
+  if (err) {
+  	console.log(err);
+  }
+  else {
+  		console.log(restaurant);
+  		res.redirect('../../admin/rest');
+  		//res.send("Rest updated successfully");
+	}
   // we have the updated user returned to us
 	//console.log(restaurant);
   //res.send(restaurant);
-  console.log(restaurant);
+ // console.log(restaurant);
 });
 
 

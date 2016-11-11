@@ -23,19 +23,31 @@
 		<h3 class="mdl-layout" >Update User</h3>
 	</div>
 	<div style="margin:auto; width:80%;">
-		<form id="user-form" method="post" action="#">
+		<form id="user-form" method="post" action="../admin/user/add">
 			<table>
 				<tr>
 					<td>
 						<div class="mdl-textfield mdl-js-textfield dl-textfield--floating-label">
 	    					 <input class="mdl-textfield__input col-span-3 validate" type="text" id="fname" name="fname">
-	   				 		<label class="mdl-textfield__label data-error" for="sample3" >First Name</label>
+	   				 		<label class="mdl-textfield__label data-error" for="sample3" >Full Name</label>
    						</div>
 					</td>
 					<td>
 							<div class="mdl-textfield mdl-js-textfield dl-textfield--floating-label">
-	    					 <input class="mdl-textfield__input col-span-3 validate" type="text" id="lname" name="lname">
-	   				 		<label class="mdl-textfield__label data-error" for="sample3" >Last Name</label>
+	    					 <input class="mdl-textfield__input col-span-3 validate" type="text" id="uname" name="uname">
+	   				 		<label class="mdl-textfield__label data-error" for="sample3" >User Name</label>
+					</td>		
+				</tr>
+				<tr>
+					<td>
+							<div class="mdl-textfield mdl-js-textfield dl-textfield--floating-label">
+	    					 <input class="mdl-textfield__input col-span-3 validate" type="password" id="password" name="password">
+	   				 		<label class="mdl-textfield__label data-error" for="sample3" >Password</label>
+					</td>
+					<td>
+							<div class="mdl-textfield mdl-js-textfield dl-textfield--floating-label">
+	    					 <input class="mdl-textfield__input col-span-3 validate" type="password" id="cpassword" name="cpassword">
+	   				 		<label class="mdl-textfield__label data-error" for="sample3" >Confirm Password</label>
 					</td>		
 				</tr>
 				<tr>
@@ -80,7 +92,7 @@
 				<tr>
 					<td>
 						<div class="mdl-textfield mdl-js-textfield dl-textfield--floating-label">
-	    				<input class="mdl-textfield__input col-span-3 validate" type="numeric" id="calorie_intake" name="calorie_intake">
+	    				<input class="mdl-textfield__input col-span-3 validate" type="numeric" id="calorie_intake" name="cal">
 	   				 	<label class="mdl-textfield__label data-error" for="calorie_intake" >Calorie Intake</label>
 					</td>
 					<td>
@@ -92,7 +104,7 @@
 				<tr>
 					<td>
 						<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="isalerigic">
-						  <input type="checkbox" id="isalerigic" class="mdl-switch__input" checked>
+						  <input type="checkbox" id="isalerigic" class="mdl-switch__input" name="isalg" checked>
 						  <span class="mdl-switch__label">is Alergic?	</span>
 						</label>
 					</td>

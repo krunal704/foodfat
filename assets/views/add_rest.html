@@ -10,9 +10,6 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js" ></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-touch.min.js"></script>
 <script type="text/javascript" src="angular-slider.js"></script>
-<script type="text/javascript" src="../range/range-picker.js"></script>
-<link rel="stylesheet" type="text/css" href="../range/range-picker.css">
-<link rel="stylesheet" href="../range/range-picker.sass">
 <script type="text/javascript" src="../js/controllers/restaurant_controller.js" ></script>
 
 <!-- Material Design Files-->
@@ -88,9 +85,8 @@
       <main id="main" class="mdl-layout__content mdl-color--grey-100">
 
                <div class="formContainer" style="width: 60%; margin: auto; ">
-                    <div id="restaurant-form" novalidate autocomplete="on" >
 
-                      <table>
+                    <form id="restaurant-form" novalidate autocomplete="on" >
 
                             <div class="fullrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                               <input class="mdl-textfield__input col-span-3 validate" type="text" ng-model="name" name="name"  >
@@ -102,7 +98,7 @@
                               <label class="mdl-textfield__label" for="sample3">Address</label>
                             </div>
                            
-                            <div class="halfrow mdl-textfield mdl-textfield--floating-label">
+                            <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                              <input class="mdl-textfield__input" ng-model="city" type="text" name="city" >
                              <label class="mdl-textfield__label" for="sample3">City</label>
                             </div>
@@ -121,12 +117,6 @@
                               <input class="mdl-textfield__input validate" type="email" ng-model="email" name="email" >
                               <label class="mdl-textfield__label" for="sample3">Email</label>
                             </div>
-                           <!--<div>
-                           <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="open">
-                              <input type="checkbox" id="open" name="open" class="mdl-checkbox__input" >
-                              <span class="mdl-checkbox__label">Open</span>
-                            </label>
-                      </div>-->
 
                             <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
                               <input class="mdl-textfield__input" type="email" name="owner_email" ng-model="owner_email" >
@@ -140,68 +130,80 @@
                            
                             <div class="halfrow mdl-js-textfield" style="display:table-cell;">
                                <span class="" for="" >Opens at </span>
-                             <input id="otime" class="timepicker mdl-textfield__input" onclick="call()" ng-model="otime" type="time" name="otime" placeholder="Opening Time" >
+                             <input id="otime" class="timepicker mdl-textfield__input"  ng-model="otime" type="text" name="otime" placeholder="Opening Time" onblur="setOtime(this.value)" >
                              </div>
                              
                             <div class="halfrow mdl-js-textfield" style="display:table-cell;">
-                              <span class="" for="" >Closes at </span>
-                              <input id="ctime" class="timepicker mdl-textfield__input" ng-model="ctime" type="time" onclick="call()" name="ctime" placeholder="Closing Time" >
-                            </div>
+                              <span class="" for="" >Closes at 
+                              </span>
+                              <input id="ctime" class="timepicker mdl-textfield__input" ng-model="ctime" type="text" name="ctime" placeholder="Closing Time" onblur="setCtime(this.value)" >                          </div>
                           
-
-                           
-
+                          
                            <div id="map" style="width: inherit; height: 300px;"></div>
 
                            <fieldset>
                              <legend>Location</legend>
 
                               <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="lat" name="lat" ng-model="lat" >
+                                <input class="mdl-textfield__input" type="text" name="lat" ng-model="lat" id="lat">
                                 <label class="mdl-textfield__label" for="lat">Latitude</label>
                               </div>
-
+                              <div ng-bind="lat"></div>
+                              <div ng-bind="long"></div>
+                              
                               <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="long" name="long" ng-model="long">
-                                <label class="mdl-textfield__label" for="long">Longitude</label>
+                                <label class="mdl-textfield__label" for="long">Longitude
+                                </label>
                               </div>
                           </fieldset>
 
                              <fieldset>
                                <legend>Menu</legend>
                                 <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid1" ng-model="item[1]" ng-change="searchFood(item[1], 1)">
+                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid1" ng-model="item[0]" ng-change="searchFood(item[0], 0)">
                                   <label class="mdl-textfield__label" for="item1">Item Name 1</label>
-                                <ul   class="result" ng-style="res[1]">
-                                    <li class="mdl-layout" ng-repeat="food in foods[1]" style="cursor:pointer; width:inherit;" ng-click="selectFood(food._id, food.item_name,1)" >{{food.item_name}}</li>
+                                <ul   class="results" ng-style="res[0]">
+                                    <li class="mdl-layout" ng-repeat="food in foods[0]" style="cursor:pointer; width:inherit;" ng-click="selectFood(food._id, food.item_name,0)" >{{food.item_name}}</li>
                                 </ul>
                               </div>
                                 <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                 <input class="mdl-textfield__input" type="number" step="0.01" name="pricei1" ng-model="price[1]">
+                                 <input class="mdl-textfield__input" type="number" step="0.01" name="pricei1" ng-model="menu[0].food_price">
                                  <label class="mdl-textfield__label" for="sample3">Price 1</label>
                                 </div>
-                                <div id="space-for-buttons"></div>
-                                <addbuttonsbutton ></addbuttonsbutton>
 
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                 <input class="mdl-textfield__input" type="text" name="itemid2" ng-model="itemid2" >
-                                 <label class="mdl-textfield__label" for="sample3">Item 2</label>
-                                </div>
+                               <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid2" ng-model="item[1]" ng-change="searchFood(item[1], 1)">
+                                  <label class="mdl-textfield__label" for="item2">Item Id 2</label>
+                                   <ul class="results" ng-style="res[1]">
+                                     <li class="mdl-layout" ng-repeat="food in foods[1]" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,1)" >{{food.item_name}}</li>
+                                  </ul>
+                              </div>
+                              <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                 <input class="mdl-textfield__input" type="number" step="0.01" name="pricei2" ng-model="menu[1].food_price">
+                                 <label class="mdl-textfield__label" for="sample3">Price 2</label>
+                              </div>
 
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                 <input class="mdl-textfield__input" type="number" step="0.01" name="pricei2" ng-model="pricei2" >
-                                 <label class="mdl-textfield__label" for="sample3">Price</label>
-                                </div>
+                               <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                  <input id="item1" class="mdl-textfield__input" type="text" name="itemid3" ng-model="item[2]" ng-change="searchFood(item[2], 2)">
+                                  <label class="mdl-textfield__label" for="item3">Item Id 3</label>
+                                   <ul class="results" ng-style="res[2]">
+                                     <li class="mdl-layout" ng-repeat="food in foods[2]" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,2)" >{{food.item_name}}</li>
+                                  </ul>
+                              </div>
 
-
+                              <div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                 <input class="mdl-textfield__input" type="number" step="0.01" name="pricei3" ng-model="menu[2].food_price">
+                                 <label class="mdl-textfield__label" for="sample3">Price 3</label>
+                              </div>
+   
+                             <div id="space-for-buttons"></div>
+                                <button addbuttons class="mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ><i class="material-icons">add</i></button>
                             </fieldset>
 
-        <div>
-          <p ng-repeat="m in menu">
-          <li>{{m.food_id}}  {{m.food_price}}</li></p>
-        </div>
-        <br><br>
-                            
+       
+         <!--
+            this block is working fine for drop down menu                
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
             <input class="mdl-textfield__input" type="text" id="sample1" value="Belarus" tabIndex="-1">
             <label for="sample1" class="mdl-textfield__label">Country</label>
@@ -212,63 +214,26 @@
             </ul>
         </div>
 
-                        <!--
+                          
+                      <div>
+                        <p>
+                          Menu Entered
+                        </p>
+                        <li ng-repeat="m in menu">
+                          {{m.food_id}} {{m.food_name}} {{m.food_price}}
+                        </li>
+                      </div>-->
+                      <button type="submit" name="Submit" ng-click="submitForm()" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
+                     </form>
 
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                           <input class="mdl-textfield__input" type="text" name="item4" >
-                           <label class="mdl-textfield__label" for="sample3">Item 4</label>
-                          </div>
-
-
-                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                           <input class="mdl-textfield__input" type="number" step="0.01" name="price4" >
-                           <label class="mdl-textfield__label" for="sample3">Price</label>
-                           </div>
-
-
-
-
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                           <input class="mdl-textfield__input" type="text" name="item5" >
-                           <label class="mdl-textfield__label" for="sample3">Item 5</label>
-                          </div>
-
-
-                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                           <input class="mdl-textfield__input" type="number" step="0.01" name="price5" >
-                           <label class="mdl-textfield__label" for="sample3">Price</label>
-                          </div>
-                          -->
-
-
-
-                      </table>
-                      <button type="submit" name="Submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit</button>
-                   </div>
                 </div>
+                
           </main>
         </div>
 
         <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
         <script>
-        function call() {
-
-
-          $('.timepicker').timepicker({
-              timeFormat: 'h:mm p',
-              interval: 30,
-              //minTime: '10',
-             // maxTime: '11:0pm',
-              defaultTime: '11',
-              startTime: '09:00',
-              dynamic: false,
-              dropdown: true,
-              scrollbar: true
-          });
-};
-        $('.timepicker').timepicker();
-      /*  $('#item_name').autocomplete({
+    /*  $('#item_name').autocomplete({
         source: function(req,res) {
             $.ajax({
                 url: "http://www.ejemplo.com:3000/autocomplete/"+req.term,
@@ -297,21 +262,21 @@
         */</script>
      <style type="text/css">
      .fullrow{
-  width: 98%;
-  margin: 0 1% 0 1%;
-}
-.halfrow{
-  width: 48%;
-  margin: 0 1% 0 1%;
-}
-      
+          width: 98%;
+          margin: 0 1% 0 1%;
+        }
+        .halfrow{
+          width: 48%;
+          margin: 0 auto 0 auto;
+        }
+              
     .add-button{
       position: fixed;
       right: 5%;
       bottom: 5%;
       display: block;
     }
-    .result{
+    .results{
     display: none;
     position: absolute;
     top: 100px;
@@ -344,6 +309,8 @@
   vibrate: false // vibrate the device when dragging clock hand
 });
 */
+//declare scope variable of controller
+
 $('#map').locationpicker({
 
   // these are default options
@@ -356,19 +323,78 @@ $('#map').locationpicker({
   zoom: 15,
   scrollwheel: true,
   inputBinding: {
-    latitudeInput: $('#lat'),
-    longitudeInput: $('#long'),
-      radiusInput: null,
-      locationNameInput: $('#address')
+    latitudeInput: null,//$('#lat').val(document.getElementById('lat').value),
+    longitudeInput: null,//$('#long'),
+    locationNameInput: $(''),
+    radiusInput: null
   },
   //enable<a href="http://www.jqueryscript.net/tags.php?/autocomplete/">Autocomplete</a>: false,
+  markerInCenter: true,
   enableAutocompleteBlur: true,
   enableReverseGeocode: true,
   draggable: true,
   // must be undefined to use the default gMaps marker
-  markerIcon: undefined
+  markerIcon: undefined,
+  onchanged: function(latitude, radius, isMarkerDropped) {
+            
+            var scope = angular.element(document.querySelector('[ng-controller="restaurant_controller"]')).scope();
+            scope.lat = latitude.latitude;
+            scope.long = latitude.longitude;
+
+    //$('#lat').val(latitude.latitude);
+    //$('#long').val(latitude.longitude);
+    console.log(scope.lat+" "+scope.long+" "+isMarkerDropped);
+  },
+
 
 });
+
+       $(document).ready(function(){
+          $('input.timepicker').timepicker({
+              timeFormat: 'h:mm p',
+              interval: 30,
+              //minTime: '10',
+             // maxTime: '11:0pm',
+              defaultTime: '10:00 AM',
+              startTime: '09:00 AM',
+              dynamic: false,
+              dropdown: false,
+              scrollbar: false,
+              /*change: function(time) {
+            // the input field
+                  var element = $('#otime'), text;
+                  console.log(element);
+                  // get access to this Timepicker instance
+                 var timepicker = element.timepicker();
+                  console.log(timepicker);
+                  text = 'Selected time is: ' + timepicker.format(time);
+                  console.log(text);
+                  element.siblings('span.help-line').text(text);
+                }*/
+          });
+   
+        
+ $('input.timepicker').timepicker();
+                
+});
+
+  function setOtime(ot)
+    {
+
+      var scope = angular.element(document.querySelector('[ng-controller="restaurant_controller"]')).scope();
+            scope.otime = ot;
+      console.log("otime"+scope.otime);
+    }
+  function setCtime(ct)
+    {
+
+      var scope = angular.element(document.querySelector('[ng-controller="restaurant_controller"]')).scope();
+            scope.ctime = ct;
+      console.log("ctime"+scope.ctime);
+    }
+  
+  // $(document).ready({
+//});
 </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 //Dependancies
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
 
 //models
@@ -15,28 +16,28 @@ router.post('/add',function(req,res){
 	var user_info = new user({
 			"firstName":req.body.fname,
 			"userName":req.body.uname,
-			"password":req.body.pass,
+			"password":req.body.password,
 			"gender":req.body.gender,
 			"email":req.body.email,
 			"dob":req.body.dob,
 			"height":req.body.height,
 			"weight":req.body.weight,
 			"profilepic":req.body.pic,
-			"zipcode":req.body.code,
+			"zipcode":req.body.zipcode,
 			"country":req.body.country,
 			"calorieintake":req.body.cal,
-			"weightlost":req.body.loss,
+			"weightlost":req.body.weight_lost,
 			"isallergic":req.body.isalg,
-			"dailystepgoal":req.body.goalstep
+			"dailystepgoal":req.body.dsg
 	})
 	user_info.save(function(err,result){
 		console.log("Came to sace");
 		if(!err){
 			console.log("added");
-			}
-			else{
-				console.log(err);
-			}
+		}
+		else{
+			console.log(err);
+		}
 	})
 });
 
@@ -67,18 +68,18 @@ console.log("The request  in validate tagid: "+req.body.fname+" "+req.body.pass)
 user.find({ 'userName': req.body.fname,'email':req.body.pass }, function(err, user) {
 
         if (err) {
-
-            console.log('Signup error');
+			console.log('Signup error');
         }
         if (user.length!=0) {
-          if(user[0].userName){
-            	console.log('Username already exists, username: ' + req.body.fname);
-             }
-        else
-        {
-        	console.log('invalid id and passs');
-        }
-    }
+        
+	        if(user[0].userName){
+	           	console.log('Username already exists, username: ' + req.body.fname);
+	        }
+	        else
+	        {
+	        	console.log('invalid id and passs');
+	        }
+   		}
  });
 });
 
@@ -101,8 +102,8 @@ user.findOne({ "email":req.body.email }, function(err, result) {
         else
         {
         	console.log("No such user!");
-					res.send("1");
-			    }
+			res.send("1");
+		}
 
  });
 });

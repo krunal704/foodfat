@@ -7,40 +7,41 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		});
 	})//add then successfully get url
 	//add button directives
-	.directive("addbuttonsbutton", function(){
+/*	.directive("addbuttonsbutton", function(){
 		return {
 				restrict: "E",
 			//	scope:true,
 				template: '<button addbuttons class="mdl-button-float mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">add</i></button>'
 			}
 	})
-
+*/
 //Directive for adding buttons on click that show an alert on click
 	.directive("addbuttons", function($compile){
 
 			return function(scope, element, attrs){
+
 				element.bind("click", function(){
-					
-					scope.count++;
-				//	scope.item[scope.count] = " ";
+					scope.initializeFood();	
+					//scope.count++;
+					//scope.item[scope.count] = " ";
 					angular.element(document.getElementById('space-for-buttons')).append(
 						$compile(
 								'<div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                 '<input id="item1" class="mdl-textfield__input" type="text" name="itemid'+scope.count+'" ng-model="item['+scope.count+']" ng-change="searchFood(item['+scope.count+'], '+scope.count+')">'+
-                '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+scope.count+'</label>'+
-                '<ul class="results'+scope.count+'" ng-style="res['+scope.count+']">'+
+                '<label class="mdl-textfield__label" for="item'+scope.count+'">Item Id '+(scope.count+1)+'</label>'+
+                '<ul class="results" ng-style="res['+scope.count+']">'+
                 '<li class="mdl-layout" ng-repeat="food in foods['+scope.count+']" style="cursor:pointer;" ng-click="selectFood(food._id, food.item_name,'+scope.count+')" >{{food.item_name}}</li>'+
 				'</ul></div>'+
 				'<div class="halfrow mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
                 '<input class="mdl-textfield__input" type="number" step="0.01" name="pricei'+scope.count+'" ng-model="menu['+scope.count+'].food_price">'+
-                '<label class="mdl-textfield__label" for="sample3">Price '+scope.count+'</label>'+
+                '<label class="mdl-textfield__label" for="sample3">Price '+(scope.count+1)+'</label>'+
                 '</div>')(scope));
 				});
 			};
 	})
-	.directive("myDatetimeRange", function () {
+	/*.directive("myDatetimeRange", function () {
 		return {
-					"time": {
+			"time": {
 		    "from": 480,
 		    "to": 1155,
 		    "dFrom": 0,
@@ -53,7 +54,7 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 		  "hasTimeSliders": true
 		};
 	})
-	/*.directive("mapdirective", function (scope) {
+	.directive("mapdirective", function (scope) {
 		return {
 			location: {
 			    latitude: 23.022579,
@@ -81,10 +82,20 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 	.controller("restaurant_controller", function ($scope, $http, $location) {
 
 		var restaurants = {};
+		//var lat = 50;
+		$scope.lat = 23.0225;
 
-		$scope.count = 1;
+		$scope.long = 72.5606;
+		$scope.fid = null;
+		/*$scope.setOtime = function (ot)
+		{
+			$scope.otime = ot;
+			console.log($scope.otime);
+		}
+		*/
+		$scope.count = 2;
 		$scope.res = [];
-		$scope.res[1] = {
+		$scope.res[0] = $scope.res[1] = $scope.res[2] = {
 			"display":"none",
 			"position":"absolute"
 				};
@@ -107,12 +118,61 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 				$scope.pricei2 = " ";
 				$scope.itemid3 = " ";
 				$scope.pricei3 = " ";
-				$scope.zipcode = " ";
+				$scope.zipcode = 0;
 			}
 
 		
 			// body...
-		
+		$scope.submitForm = function()
+		{
+
+			var data = {
+				"name" : $scope.name,
+				"address" : $scope.address,
+				"lat" : $scope.lat,
+				"long" : $scope.long,
+				"phone" : $scope.phone,
+				"email" : $scope.email,
+				"owner_email" : $scope.owner_email,
+				"website" : $scope.website,
+				"otime" : $scope.otime,
+				"ctime" : $scope.ctime,
+				"city" : $scope.city,
+				"menu" : $scope.menu,
+				"zipcode" : $scope.zipcode
+			};
+			console.log(data);
+			$http.post('../admin/rest/add', data).then(function () {
+				console.log("added successfully");
+			});
+		}
+
+
+		$scope.updateRestInfo = function()
+		{
+
+			var data = {
+				"id" : $scope.fid,
+				"name" : $scope.name,
+				"address" : $scope.address,
+				"lat" : $scope.lat,
+				"long" : $scope.long,
+				"phone" : $scope.phone,
+				"email" : $scope.email,
+				"owner_email" : $scope.owner_email,
+				"website" : $scope.website,
+				"otime" : $scope.otime,
+				"ctime" : $scope.ctime,
+				"city" : $scope.city,
+				"menu" : $scope.menu,
+				"zipcode" : $scope.zipcode
+			};
+			console.log(data);
+			$http.post('../admin/rest/update', data).then(function () {
+				console.log("added successfully");
+			});
+		}
+
 
 		$http.get('../admin/rest/getrest').then(function (res) {
 			$scope.restaurants = res.data;
@@ -124,26 +184,31 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 			console.log(id.id);
 			$http.get('../admin/rest/update/'+id.id).then(function (res) {
 
-		$scope.name = res.data.rest_name;
-		$scope.address = res.data.rest_address;
-		$scope.lat = res.data.rest_loc_lat;
-		$scope.long = res.data.rest_loc_long;
-		$scope.phone = res.data.phoneno;
-		$scope.email = res.data.rest_email;
-		//opening_status : req.body.open,
-		$scope.owner_email = res.data.owner_mail_id;
-		$scope.website = res.data.restraunt_website;
-		$scope.otime = res.data.rest_open_time;
-		$scope.ctime = res.data.rest_close_time;
-		$scope.city = res.data.rest_city;
-		$scope.itemid1 = res.data.rest_menu.food_id_1;
-		$scope.pricei1 = res.data.rest_menu.food_price_1;
-		$scope.itemid2 = res.data.rest_menu.food_id_2;
-		$scope.pricei2 = res.data.rest_menu.food_price_2;
-		$scope.itemid3 = res.data.rest_menu.food_id_3;
-		$scope.pricei3 = res.data.rest_menu.food_price_3;
-		$scope.zipcode = res.data.zipcode;
-		});
+				$scope.fid = res.data._id;
+				$scope.name = res.data.rest_name;
+				$scope.address = res.data.rest_address;
+				$scope.lat = res.data.rest_loc_lat;
+				$scope.long = res.data.rest_loc_long;
+				$scope.phone = res.data.phoneno;
+				$scope.email = res.data.rest_email;
+				//opening_status : req.body.open,
+				$scope.owner_email = res.data.owner_mail_id;
+				$scope.website = res.data.restraunt_website;
+				$scope.otime = res.data.rest_open_time;
+				$scope.ctime = res.data.rest_close_time;
+				$scope.city = res.data.rest_city;
+				$scope.menu = res.data.rest_menu;
+				$scope.count = $scope.menu.length-1;
+				/*$scope.itemid1 = res.data.rest_menu.food_id_1;
+				$scope.pricei1 = res.data.rest_menu.food_price_1;
+				$scope.itemid2 = res.data.rest_menu.food_id_2;
+				$scope.pricei2 = res.data.rest_menu.food_price_2;
+				$scope.itemid3 = res.data.rest_menu.food_id_3;
+				$scope.pricei3 = res.data.rest_menu.food_price_3;
+				*/
+				$scope.zipcode = res.data.zipcode;
+		
+			});
 		}
 		/*$scope.time =  {
 		  "time": {
@@ -238,13 +303,24 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
 				"display":"none"
 				
 			};
-			$scope.item[i] = name;
+			//$scope.item[i] = name;
+			if($scope.menu[i] == null){
+				$scope.menu[i] = {food_id : id, food_name:name, food_price:null};
+			}
 			$scope.menu[i].food_id = id;
+			$scope.menu[i].food_name = name;
 		//	$scope.menu.push({"food_id":id,"food_price":name});
-			console.log(i+" select food id "+id+" name is "+$scope.menu[i].food_id+" name "+$scope.item[i]);
+			console.log(i+" select food id "+id+" name is "+$scope.menu[i].food_name+" name "+$scope.item[i]);
 		}
 
+		$scope.initializeFood = function()
+		{	
+			$scope.count++;
+			$scope.menu[$scope.count] = {food_id:0,food_name:"",food_price:null};
+			console.log($scope.menu[$scope.count]);
+		}
 		$scope.addElement = function(id, price,i){
+			console.log(id + " " + price+ " " +i);
 			$scope.menu.push({"food_id":id,"food_price":price});
 		}
 
@@ -267,6 +343,11 @@ angular.module("restaurant", [])	//rgkevin.datetimeRangePicker
         }*/
 
 		$scope.foods = [];
+		$scope.menu = [];
+		$scope.item = [];
+		$scope.menu[0] = {food_id:0,food_name:"",food_price:null};
+		$scope.menu[1] = {food_id:0,food_name:"",food_price:null};
+		$scope.menu[2] = {food_id:0,food_name:"",food_price:null};
 		$scope.confirmRestDelete = confirmRestDelete;
 		$scope.restaurants = restaurants;
 		$scope.getRest = getRest;

@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var session = require('express-session');
+
 var foodinfo = require('../models/foodinfo');
-
-
 
 router.get('/search/:sfood', function(req, res){
   var t = req.params.sfood;
@@ -73,7 +73,7 @@ foodinfo.findOne({"item_name":req.body.fname},function(err,result){
             console.log("added");
             //res.write("food added successfully");
           //res.send("The requested food has beed successfully added.");
-res.redirect('../../admin/food');
+            res.redirect('../../admin/food');
 
             }
             else{
