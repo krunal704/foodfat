@@ -15,7 +15,7 @@
     "express-session": "^1.14.2",
     "getmdl-select": "^1.0.4",
     "material-timepicker": "^0.1.2",
-    "mongoose": "4.4.19",
+    "mongoose": "5.7.13",
     "morgan": "^1.7.0",
     "node-rest-client": "^2.0.1",
     "nodemon": "^1.11.0"
